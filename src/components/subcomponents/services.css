@@ -1,0 +1,20 @@
+.service img{
+    margin-top: 1.5rem;
+    border: 3px solid #18006d;
+    height: 480px;
+    width: 300px;
+    object-fit: cover;
+}
+@media (max-width: 768px) {
+    .services-img {
+        margin-left: 0;
+    }
+}
+
+@media (max-width: 426px) {
+    .services-img img {
+        margin-left: 0;
+        width: 100%;
+        height: auto;
+    }
+}
