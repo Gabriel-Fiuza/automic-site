@@ -1,6 +1,7 @@
 import './componentIndex.css';
 import komb from '../assets/komb-automic.png';
 import muro from '../assets/muro-tijolo.jpg';
+import clouds from '../assets/clouds.png';
 import { useEffect, useState } from 'react'
 
 export default function Game() {
@@ -23,6 +24,7 @@ export default function Game() {
 
   return (
     <div className='game'>
+      <img className='clouds' src={clouds} alt="" />
       <img className={`komb ${isJumping ? 'jump' : ''}`} src={komb} alt="" />
       <img className='wall' src={muro} alt="" />
     </div>

@@ -32,6 +32,22 @@
     animation: wall 3s infinite linear;
 
 }
+.clouds{
+    position: absolute;
+    top: 50px;
+    width: 200px;
+    right: 0;
+    animation: clouds 30s linear infinite;
+}
+
+@keyframes clouds {
+    from {
+        right: -200px;
+    }
+    to {
+        right: 100%;
+    }
+}
 
 @keyframes wall {
     from {
@@ -47,10 +63,10 @@
     bottom: 0;
   }
   40% {
-    bottom: 130px;
+    bottom: 150px;
   }
   60% {
-    bottom: 130px;
+    bottom: 150px;
   }
   100% {
     bottom: 0;
