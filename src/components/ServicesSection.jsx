@@ -1,4 +1,4 @@
-import Services from "./subcomponents/services";
+import Services from "./subcomponents/Services";
 import sensor from '../assets/sensor-nivel.jpg';
 import residencial from '../assets/automacao-residencial.jpg';
 import bi from '../assets/bi.jpg';
