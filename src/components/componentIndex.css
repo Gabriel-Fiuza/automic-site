@@ -89,6 +89,9 @@
 }
 
 @media (max-width: 426px) {
+    .komb{
+    left: 100px;
+}
     .services-img img {
         margin-left: 0;
     }
