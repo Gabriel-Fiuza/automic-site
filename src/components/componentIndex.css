@@ -24,20 +24,20 @@
 .jump{
     animation: jump 0.6s cubic-bezier(0.28, 0.84, 0.42, 1);
 }
-.wall{
+/* .wall{
     position: absolute;
     height: 80px;
     width: 20px;
     bottom: 0;
     animation: wall 3s infinite linear;
 
-}
+} */
 .clouds{
     position: absolute;
     top: 50px;
     width: 200px;
     right: 0;
-    animation: clouds 30s linear infinite;
+    animation: clouds 25s linear infinite;
 }
 
 @keyframes clouds {
@@ -49,14 +49,14 @@
     }
 }
 
-@keyframes wall {
+/* @keyframes wall {
     from {
         right: -20px;
     }
     to {
         right: 100%;
     }
-}
+} */
 
 @keyframes jump {
   0% {
