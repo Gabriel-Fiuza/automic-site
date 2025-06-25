@@ -13,7 +13,7 @@ body {
     color: #333;
 }
 .header {
-    position: sticky;
+    /* position: sticky; */
     top: 0;
     background-color: var(--azul-escuro);
     color: var(--branco);

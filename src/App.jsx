@@ -29,10 +29,3 @@ export default function App() {
   )
 }
 
-<iframe
-  src={dados.pdf}
-  width="100%"
-  height="600px"
-  style={{ border: 'none', borderRadius: 8, marginBottom: 24, boxShadow: '0 2px 8px #0001' }}
-  title="Certificado PDF"
-/>
