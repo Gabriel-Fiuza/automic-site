@@ -168,6 +168,7 @@ export const certificados = {
     local: 'Ouro Preto/MG',
     cargaHoraria: '40 horas',
     pdf: '/certificados/BX9XBRGR.pdf',
+    tempoExperiencia: '44 anos',
   },
   'REBPM5RS': {
     nome: 'Laryssa Aparecida Gomes Fagundes',

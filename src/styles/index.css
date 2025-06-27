@@ -1,3 +1,155 @@
+/* Certificado Styles */
+.cert-btn {
+  background: var(--azul-escuro);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 18px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background 0.2s;
+}
+.cert-btn.linkedin {
+  background: #0077b5;
+}
+.cert-btn.anchor {
+  background: var(--azul-escuro);
+}
+.cert-btn:active,
+.cert-btn:focus {
+  outline: 2px solid var(--amarelo-vibrante);
+}
+.cert-dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 110%;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  box-shadow: 0 2px 8px #0002;
+  min-width: 120px;
+  z-index: 10;
+}
+.cert-dropdown.open {
+  display: block;
+}
+.cert-dropdown-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 15px;
+}
+.cert-card {
+  background: rgba(255,255,255,0.97);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px #0002;
+  padding: 1.5rem 2rem;
+  margin-bottom: 24px;
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  line-height: 1.8;
+}
+.cert-nav {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255,255,255,0.97);
+  border-radius: 0 0 8px 8px;
+  box-shadow: 0 2px 8px #0001;
+  padding: 0.5rem 1.5rem;
+  gap: 16px;
+  position: relative;
+  top: 0;
+  z-index: 2;
+}
+.cert-section {
+  background: var(--cinza-claro);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px #0001;
+  padding: 2rem;
+  line-height: 1.6;
+  margin-bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  text-align: left;
+}
+.cert-section.center {
+  text-align: center;
+  align-items: center;
+}
+.cert-list {
+  margin: 0;
+  padding-left: 24px;
+  columns: 2;
+  column-gap: 32px;
+  font-size: 1rem;
+}
+.cert-iframe {
+  min-height: 600px;
+  height: 650px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px #0001;
+  background: #f2f2f2;
+  display: block;
+}
+.cert-link {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--azul-escuro);
+  color: white;
+  padding: 6px 14px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-size: 14px;
+  box-shadow: 0 1px 4px #0002;
+}
+.cert-blur-bg {
+  position: fixed;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(12px) brightness(0.85);
+  -webkit-backdrop-filter: blur(12px) brightness(0.85);
+  pointer-events: none;
+}
+.cert-atividades-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  max-width: 1200px;
+  margin: 32px auto 0 auto;
+  justify-content: center;
+  align-items: stretch;
+}
+.cert-program {
+  max-width: 1200px;
+  margin: 32px auto 0 auto;
+  background: var(--cinza-claro);
+  border-radius: 8px;
+  box-shadow: 0 1px 4px #0001;
+  padding: 2rem;
+  line-height: 2.1;
+  min-height: 320px;
+}
 :root {
     --azul-escuro: #001330;
     --amarelo-vibrante: #FFC300;
@@ -273,4 +425,13 @@ body {
     .footer-column h3 {
         font-size: 1rem;
     }
+}
+
+/* No seu CSS */
+.carrossel-fade {
+  opacity: 0;
+  transition: opacity 0.4s;
+}
+.carrossel-fade.carrossel-fade-active {
+  opacity: 1;
 }

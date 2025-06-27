@@ -3,6 +3,7 @@ import { certificados } from '../assets/certificados/certificadosData';
 import Footer from './Footer';
 import Header from './Header';
 import '../styles/index.css';
+import CarrosselMidia from './CarrosselMidia';
 
 const DADOS_RESPONSAVEL = {
   razao: 'EMPRESA JÚNIOR DE ENGENHARIA DE CONTROLE E AUTOMAÇÃO DA UNIVERSIDADE FEDERAL DE OURO PRETO',
@@ -41,17 +42,7 @@ export default function Certificado() {
       overflow: 'hidden',
     }}>
       {/* Camada de desfoco */}
-      <div style={{
-        position: 'fixed',
-        zIndex: 0,
-        top: 0,
-        left: 0,
-        width: '100vw',
-        height: '100vh',
-        backdropFilter: 'blur(12px) brightness(0.85)',
-        WebkitBackdropFilter: 'blur(12px) brightness(0.85)',
-        pointerEvents: 'none',
-      }} />
+      <div id="background" className="cert-blur-bg" />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Header className="cert-header" />
         <main className="main-content" style={{ maxWidth: 1300, margin: '0 auto', padding: '2rem 1rem', display: 'flex', gap: 32, alignItems: 'flex-start', flexWrap: 'wrap' }}>
@@ -63,75 +54,35 @@ export default function Certificado() {
                   src={dados.pdf}
                   width="100%"
                   height="650px"
-                  style={{ minHeight: 600, height: 650, border: 'none', borderRadius: 8, boxShadow: '0 2px 8px #0001', background: '#f2f2f2', display: 'block' }}
+                  className="cert-iframe"
                   title="Certificado PDF"
                 />
-                <a href={dados.pdf} target="_blank" rel="noopener noreferrer" style={{ position: 'absolute', top: 12, right: 12, background: 'var(--azul-escuro)', color: 'white', padding: '6px 14px', borderRadius: 6, textDecoration: 'none', fontSize: 14, boxShadow: '0 1px 4px #0002' }}>Abrir em nova aba</a>
+                <a href={dados.pdf} target="_blank" rel="noopener noreferrer" className="cert-link">Abrir em nova aba</a>
                 {/* Barra de navegação abaixo do PDF */}
-                <nav style={{
-                  width: '100%',
-                  maxWidth: 900,
-                  margin: '0 auto',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  background: 'rgba(255,255,255,0.97)',
-                  borderRadius: '0 0 8px 8px',
-                  boxShadow: '0 2px 8px #0001',
-                  padding: '0.5rem 1.5rem',
-                  gap: 16,
-                  position: 'relative',
-                  top: 0,
-                  zIndex: 2,
-                }}>
+                <nav className="cert-nav">
                   {/* Botão Download */}
                   <div style={{ position: 'relative', display: 'inline-block' }}>
                     <button
-                      style={{
-                        background: 'var(--azul-escuro)',
-                        color: 'white',
-                        border: 'none',
-                        borderRadius: 6,
-                        padding: '8px 18px',
-                        fontSize: 15,
-                        fontWeight: 600,
-                        cursor: 'pointer',
-                        display: 'flex',
-                        alignItems: 'center',
-                        gap: 8,
-                      }}
+                      className="cert-btn"
                       onClick={e => {
                         e.preventDefault();
                         const dropdown = e.currentTarget.nextSibling;
                         if (dropdown) {
-                          dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+                          dropdown.classList.toggle('open');
                         }
                       }}
                     >
                       ⬇️ Download
                     </button>
-                    <div
-                      style={{
-                        display: 'none',
-                        position: 'absolute',
-                        left: 0,
-                        top: '110%',
-                        background: 'white',
-                        border: '1px solid #ddd',
-                        borderRadius: 6,
-                        boxShadow: '0 2px 8px #0002',
-                        minWidth: 120,
-                        zIndex: 10,
-                      }}
-                    >
+                    <div className="cert-dropdown">
                       <button
-                        style={{ width: '100%', background: 'none', border: 'none', padding: '8px', cursor: 'pointer', textAlign: 'left' }}
+                        className="cert-dropdown-btn"
                         onClick={() => {
                           window.open(dados.pdf, '_blank');
                         }}
                       >PDF</button>
                       <button
-                        style={{ width: '100%', background: 'none', border: 'none', padding: '8px', cursor: 'pointer', textAlign: 'left' }}
+                        className="cert-dropdown-btn"
                         onClick={() => {
                           if (dados.jpg) {
                             window.open(dados.jpg, '_blank');
@@ -144,26 +95,24 @@ export default function Certificado() {
                   </div>
                   {/* Botão LinkedIn */}
                   <button
-                    style={{
-                      background: '#0077b5',
-                      color: 'white',
-                      border: 'none',
-                      borderRadius: 6,
-                      padding: '8px 18px',
-                      fontSize: 15,
-                      fontWeight: 600,
-                      cursor: 'pointer',
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: 8,
-                    }}
+                    className="cert-btn linkedin"
                     onClick={() => {
                       const url = window.location.href;
-                      const summary = encodeURIComponent(
-                        'Acabei de concluir o Treinamento de programação e manutenção do Controllogix, rede Ethernet, rede Devicenet e desenvolvimento de Sistema Supervisório em Excel ministrado por Luiz da Matta. Agradeço a Automic Jr.(Empresa Júnior de Engenharia de Controle e Automação da Escola de Minas de Ouro Preto) pelo apoio e organização, e a A3EM(Associação de Antigos Alunos da Escola de Minas) pelo espaço disponibilizado sendo ambas essenciais para melhor aproveitamento do curso. Obrigado também ao Luiz Mata e a Matta Automação. #automação #engenharia #certificado\n' + url
-                      );
+                      const pdfUrl = dados.pdf ? `https://automic.vercel.app/certificado#${dados.pdf}` : url;
+                      const textoSugestao =
+                        'Acabei de concluir o Treinamento de programação e manutenção do Controllogix, rede Ethernet, rede Devicenet e desenvolvimento de Sistema Supervisório em Excel ministrado por Luiz da Matta. Agradeço a Automic Jr.(Empresa Júnior de Engenharia de Controle e Automação da Escola de Minas de Ouro Preto) pelo apoio e organização, e a A3EM(Associação de Antigos Alunos da Escola de Minas) pelo espaço disponibilizado sendo ambas essenciais para melhor aproveitamento do curso. Obrigado também ao Luiz Mata e a Matta Automação. #automação #engenharia #certificado' +
+                        '\n\nVeja meu certificado em PDF: ' + pdfUrl +
+                        '\nVeja aqui detalhes como a ementa do curso, imagens e o meu certificado! ' + url;
+                      // Copia o texto para a área de transferência
+                      if (navigator.clipboard) {
+                        navigator.clipboard.writeText(textoSugestao);
+                        alert('Texto sugerido copiado! Ao abrir o LinkedIn, cole o texto na publicação.');
+                      } else {
+                        alert('Copie o texto sugerido manualmente:\n' + textoSugestao);
+                      }
+                      // Abre o LinkedIn para compartilhar o link do certificado
                       window.open(
-                        `https://www.linkedin.com/sharing/share-offsite/?url=${url}&summary=${summary}`,
+                        `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pdfUrl)}`,
                         '_blank'
                       );
                     }}
@@ -172,19 +121,8 @@ export default function Certificado() {
                     Compartilhar no LinkedIn
                   </button>
                   {/* Botão Âncora */}
-                  <button style={{
-                    background: 'var(--azul-escuro)',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: 6,
-                    padding: '8px 18px',
-                    fontSize: 15,
-                    fontWeight: 600,
-                    cursor: 'pointer',
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 8,
-                  }}
+                  <button
+                    className="cert-btn anchor"
                     onClick={() => {
                       const el = document.getElementById('conteudo_programático');
                       if (el) el.scrollIntoView({ behavior: 'smooth' });
@@ -196,17 +134,7 @@ export default function Certificado() {
               </div>
               <div style={{ flex: 1, minWidth: 320, lineHeight: 1.5 }}>
                 {/* Bloco fixo para dados do responsável e do participante, acima do blur */}
-                <div style={{
-                  background: 'rgba(255,255,255,0.97)',
-                  borderRadius: 10,
-                  boxShadow: '0 2px 8px #0002',
-                  padding: '1.5rem 2rem',
-                  marginBottom: 24,
-                  position: 'relative',
-                  zIndex: 10,
-                  maxWidth: 600,
-                  lineHeight: 1.8,
-                }}>
+                <div className="cert-card">
                   <section style={{ marginBottom: 18 }}>
                     <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 8 }}>Dados do responsável pela emissão:</h3>
                     <p><b>Data e hora:</b> 23/06/2025 às 20h34</p>
@@ -214,65 +142,50 @@ export default function Certificado() {
                     <p><b>CNPJ:</b> 25.969.088/0001-85</p>
                   </section>
                   <section id="infogeral">
-                    <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 8 }}>Dados informados pelo emissor do certificado:</h3>
-                    <b>Nome do participante/aluno:</b>
+                    <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 8 }}>Dados informados pela Automic Júnior, emissora do certificado:</h3>
+                    <b>Nome do(a) {dados.funcao}:</b>
                     <p>
-                      <span style={{ fontSize: '1.45rem', color: '#1a237e', fontWeight: 800, letterSpacing: 1 }}>{'Matheus Henrique da Costa Baldez'}</span>
+                      <span style={{ fontSize: '1.45rem', color: '#1a237e', fontWeight: 800, letterSpacing: 1 }}>
+                        {dados.nome}
+                      </span>
                     </p>
-                    <p><b>Curso:</b>  Especialização Técnica do Sistema ControlLogix e Redes Industriais, com ênfase prática em DeviceNet e desenvolvimento supervisório Excel.</p>
-                    <p><b>Nome do professor/instrutor:</b> Luiz da Matta</p>
-                    <p><b>Data de realização:</b> 29 de junho de 2025</p>
-                    <p><b>Local de realização:</b> Ouro Preto/MG</p>
-                    <p><b>Carga horária:</b> 40 horas</p><br />
-                    <p><b>O curso ocorreu nos dias:</b> 17/05/2025, 18/05/2025, 14/06/2025, 15/06/2025 e 29/06/2025</p>
-                    <p><b>O curso foi realizado na modalidade:</b> Presencial</p>
-                    <p><b>O curso foi realizado no endereço:</b> Sede da A3EM(Associação dos Antigos Alunos da Escola de Minas) - Rua Henri Gorceix, número 96, em Ouro Preto, Minas Gerais </p>
+                    <p><b>Curso:</b> {dados.titulo}</p>
+                    {/* Só mostra o professor/instrutor se não for palestrante (case-insensitive) */}
+                    {dados.funcao && dados.funcao.toLowerCase() !== 'palestrante' && (
+                      <p><b>Nome do professor/instrutor:</b> {dados.professor}</p>
+                    )}
+                    <p><b>Data de conclusão:</b> {dados.dataRealizacao}</p>
+                    <p><b>Local de realização:</b> {dados.local}</p>
+                    <p><b>Carga horária:</b> {dados.cargaHoraria}</p>
+                    {/* Novo campo: tempo de experiência na área */}
+                    {dados.tempoExperiencia && (
+                      <p><b>Tempo de experiência na área:</b> {dados.tempoExperiencia}</p>
+                    )}
                   </section>
                 </div>
               </div>
 
+              {/* Nova div para datas e localidade - movida para abaixo dos botões */}
+              <div id="datasLocalidades" style={{ background: '#fff', borderRadius: 10, boxShadow: '0 1px 6px #0001', marginTop: 18, padding: '18px 22px', width: '100%' }}>
+                <p style={{ margin: 0, fontSize: '1.05rem', color: '#222' }}><b>O curso ocorreu nos dias:</b> 17/05/2025, 18/05/2025, 14/06/2025, 15/06/2025 e 29/06/2025</p>
+                <p style={{ margin: 0, fontSize: '1.05rem', color: '#222' }}><b>O curso foi realizado na modalidade:</b> Presencial</p>
+                <p style={{ margin: 0, fontSize: '1.05rem', color: '#222' }}><b>O curso foi realizado no endereço:</b> Sede da A3EM(Associação dos Antigos Alunos da Escola de Minas) - Rua Henri Gorceix, número 96, em Ouro Preto, Minas Gerais</p>
+              </div>
+
 
               {/* Bloco: Atividades + SobreA3EM lado a lado, fundo igual, responsivo */}
-              <div id="atividades-sobreA3EM-wrapper" style={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 32,
-                maxWidth: 1200,
-                margin: '32px auto 0 auto',
-                justifyContent: 'center',
-                alignItems: 'stretch',
-              }}>
+              <div id="atividades-sobreA3EM-wrapper" className="cert-atividades-wrapper">
                 <section
                   id="atividades"
-                  style={{
-                    flex: 2,
-                    minWidth: 320,
-                    background: 'var(--cinza-claro)',
-                    borderRadius: 8,
-                    boxShadow: '0 1px 4px #0001',
-                    padding: '2rem',
-                    lineHeight: 1.6,
-                    marginBottom: 0,
-                    width: '100%',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                    alignItems: 'flex-start',
-                    textAlign: 'left',
-                  }}
+                  className="cert-section"
+                  style={{ flex: 2.5, minWidth: 320, minHeight: 600, justifyContent: 'flex-start', maxWidth: '100%' }}
                 >
-                  <iframe
-                    width="100%"
-                    height="200"
-                    src="https://www.youtube.com/embed/dQw4w9WgXcQ"
-                    title="Vídeo de exemplo"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    style={{ marginBottom: 16, borderRadius: 8, boxShadow: '0 1px 4px #0002' }}
-                  ></iframe>
+                  {/* Carrossel de imagens e vídeos */}
+                  <div style={{ marginBottom: 16 }}>
+                    <CarrosselMidia />
+                  </div>
                   <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 12, textAlign: 'left' }}>Descrição das Atividades:</h3>
-                  <ul style={{ margin: 0, paddingLeft: 0, fontSize: '1rem', display: 'inline-block', textAlign: 'left' }}>
+                  <ul style={{ margin: 0, paddingLeft: 0, fontSize: '1rem', display: 'inline-block', textAlign: 'left', minHeight: 260 }}>
                     <li>Instalação e configuração de ambientes de desenvolvimento.</li>
                     <li>Programação de controladores ControlLogix.</li>
                     <li>Configuração de redes Ethernet e DeviceNet.</li>
@@ -286,39 +199,19 @@ export default function Certificado() {
                 </section>
                 <section
                   id="sobreA3EM"
-                  style={{
-                    flex: 1,
-                    minWidth: 320,
-                    background: 'var(--cinza-claro)',
-                    borderRadius: 8,
-                    boxShadow: '0 1px 4px #0001',
-                    padding: '2rem',
-                    lineHeight: 1.6,
-                    textAlign: 'center',
-                    display: 'flex',
-                    flexDirection: 'column',
-                    justifyContent: 'center',
-                  }}
+                  className="cert-section center"
+                  style={{ flex: 1, minWidth: 320 }}
                 >
                   <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 12 }}>Sobre a A³EM:</h3>
-                  <p><b>Sobre a A³EM:</b> Fundada em 12 de Outubro de 1942 a A³EM vem, desde então, atuando como entidade que promove ações em prol do desenvolvimento acadêmico da Escola de Minas, além de estimular relações de integração entre os profissionais nela formados. Promove, apoia e realiza eventos (sessões solenes, palestras, simpósios, encontros, publicações, confraternizações, ). Mantém estreito intercâmbio com as Sociedades de Ex-Alunos da Escola de Minas de Ouro Preto (SEMOP´s) sediadas em várias cidades do país.</p>
+                  <p><b>Associação de Antigos Alunos da Escola de Minas:</b> Fundada em 12 de Outubro de 1942 a A³EM vem, desde então, atuando como entidade que promove ações em prol do desenvolvimento acadêmico da Escola de Minas, além de estimular relações de integração entre os profissionais nela formados. Promove, apoia e realiza eventos (sessões solenes, palestras, simpósios, encontros, publicações, confraternizações, ). Mantém estreito intercâmbio com as Sociedades de Ex-Alunos da Escola de Minas de Ouro Preto (SEMOP´s) sediadas em várias cidades do país.</p>
                   <p>É uma entidade sem fins lucrativos filiada à Federação Brasileira de Associações de Engenheiros (FEBRAE) com representação no CREA. Está sediada na Rua Henri Gorceix, no. 96 , em Ouro Preto – MG, imóvel onde residiu, por quinze anos, o fundador e primeiro Diretor da Escola de Minas – Professor Claude-Henri Gorceix. O quadro de associados da A³EM é formado por efetivos, cooperadores, honorários e contribuintes.</p>
                 </section>
               </div>
 
               {/* Conteúdo Programático abaixo, mesma cor de fundo */}
-              <section id="conteudo_programático" style={{
-                maxWidth: 1200,
-                margin: '32px auto 0 auto',
-                background: 'var(--cinza-claro)',
-                borderRadius: 8,
-                boxShadow: '0 1px 4px #0001',
-                padding: '2rem',
-                lineHeight: 2.1,
-                minHeight: 320,
-              }}>
+              <section id="conteudo_programático" className="cert-program">
                 <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 12 }}>Conteúdo Programático</h3>
-                <ul style={{ margin: 0, paddingLeft: 24, columns: 2, columnGap: 32, fontSize: '1rem' }}>
+                <ul className="cert-list">
                   <li>Módulo 1: Apresentação</li>
                   <li>Módulo 2: Instalação da Máquina Virtual</li>
                   <li>Módulo 3: Ethernet</li>
@@ -351,22 +244,22 @@ export default function Certificado() {
                   <li>Módulo 30: Programação da TC01</li>
                   <li>Módulo 31: Trabalhando os Recursos</li>
                   <li>Módulo 32: Criando um Segundo Equipamento</li>
-                  <li>Módulo 34: Utilizando Bloco Add ON</li>
-                  <li>Módulo 35: Teoria da Programação FBD</li>
-                  <li>Módulo 36: Ativando Rotinas</li>
-                  <li>Módulo 37: Download e Upload de Programas</li>
-                  <li>Módulo 38: Recursos de Navegação do Software Logix5000/Studio 5000</li>
-                  <li>Módulo 39: Diagnóstico do Controlador e Módulos</li>
-                  <li>Módulo 40: Tratamento do Sinal Analógico (Entrada e Saída)</li>
-                  <li>Módulo 41: Módulos Analógicos e Digitais</li>
-                  <li>Módulo 42: Emulador</li>
-                  <li>Módulo 43: Utilização da Função SSV/GSV</li>
-                  <li>Módulo 44: Comunicação entre Controladores (Produtor/Consumidor)</li>
-                  <li>Módulo 45: Comunicação entre Controladores ControlLogix via MSG</li>
-                  <li>Módulo 46: Comunicação entre Controladores ControlLogix e CompactLogix via MSG</li>
-                  <li>Módulo 47: Conceitos Básicos do PID</li>
-                  <li>Módulo 48: Usando ControlFlash</li>
-                  <li>Módulo 49: Teste Final</li>
+                  <li>Módulo 33: Utilizando Bloco Add ON</li>
+                  <li>Módulo 34: Teoria da Programação FBD</li>
+                  <li>Módulo 35: Ativando Rotinas</li>
+                  <li>Módulo 36: Download e Upload de Programas</li>
+                  <li>Módulo 37: Recursos de Navegação do Software Logix5000/Studio 5000</li>
+                  <li>Módulo 38: Diagnóstico do Controlador e Módulos</li>
+                  <li>Módulo 39: Tratamento do Sinal Analógico (Entrada e Saída)</li>
+                  <li>Módulo 40: Módulos Analógicos e Digitais</li>
+                  <li>Módulo 41: Emulador</li>
+                  <li>Módulo 42: Utilização da Função SSV/GSV</li>
+                  <li>Módulo 43: Comunicação entre Controladores (Produtor/Consumidor)</li>
+                  <li>Módulo 44: Comunicação entre Controladores ControlLogix via MSG</li>
+                  <li>Módulo 45: Comunicação entre Controladores ControlLogix e CompactLogix via MSG</li>
+                  <li>Módulo 46: Conceitos Básicos do PID</li>
+                  <li>Módulo 47: Usando ControlFlash</li>
+                  <li>Módulo 48: Teste Final</li>
                 </ul>
               </section>
               
