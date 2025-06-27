@@ -8,7 +8,7 @@ import CarrosselMidia from './CarrosselMidia';
 const DADOS_RESPONSAVEL = {
   razao: 'EMPRESA JÚNIOR DE ENGENHARIA DE CONTROLE E AUTOMAÇÃO DA UNIVERSIDADE FEDERAL DE OURO PRETO',
   cnpj: '25.969.088/0001-85',
-  dataHora: '23/06/2025 às 20h34',
+  dataHora: '30/06/2025 às 08h34',
 };
 
 export default function Certificado() {
@@ -84,11 +84,9 @@ export default function Certificado() {
                       <button
                         className="cert-dropdown-btn"
                         onClick={() => {
-                          if (dados.jpg) {
-                            window.open(dados.jpg, '_blank');
-                          } else {
-                            alert('Arquivo JPG não disponível.');
-                          }
+                          window.alert(
+                            'A opção de download em JPG ainda não está disponível.\n\nPara obter o certificado em imagem, baixe o PDF e utilize o site https://www.ilovepdf.com/pt/pdf_para_jpg para converter.\n\nClique em PDF para baixar.'
+                          );
                         }}
                       >JPG</button>
                     </div>
@@ -97,22 +95,22 @@ export default function Certificado() {
                   <button
                     className="cert-btn linkedin"
                     onClick={() => {
-                      const url = window.location.href;
-                      const pdfUrl = dados.pdf ? `https://automic.vercel.app/certificado#${dados.pdf}` : url;
+                      // Sempre sugere o link público do certificado na Vercel
+                      const codigo = window.location.hash.replace('#', '').toUpperCase();
+                      const publicUrl = `https://automic.vercel.app/certificados/${codigo}.pdf`;
+                      const publicPageUrl = `https://automic.vercel.app/certificado#${codigo}`;
                       const textoSugestao =
                         'Acabei de concluir o Treinamento de programação e manutenção do Controllogix, rede Ethernet, rede Devicenet e desenvolvimento de Sistema Supervisório em Excel ministrado por Luiz da Matta. Agradeço a Automic Jr.(Empresa Júnior de Engenharia de Controle e Automação da Escola de Minas de Ouro Preto) pelo apoio e organização, e a A3EM(Associação de Antigos Alunos da Escola de Minas) pelo espaço disponibilizado sendo ambas essenciais para melhor aproveitamento do curso. Obrigado também ao Luiz Mata e a Matta Automação. #automação #engenharia #certificado' +
-                        '\n\nVeja meu certificado em PDF: ' + pdfUrl +
-                        '\nVeja aqui detalhes como a ementa do curso, imagens e o meu certificado! ' + url;
-                      // Copia o texto para a área de transferência
+                        '\n\nVeja meu certificado em PDF: ' + publicUrl +
+                        '\nVeja aqui detalhes como a ementa do curso, imagens e o meu certificado! ' + publicPageUrl;
                       if (navigator.clipboard) {
                         navigator.clipboard.writeText(textoSugestao);
                         alert('Texto sugerido copiado! Ao abrir o LinkedIn, cole o texto na publicação.');
                       } else {
                         alert('Copie o texto sugerido manualmente:\n' + textoSugestao);
                       }
-                      // Abre o LinkedIn para compartilhar o link do certificado
                       window.open(
-                        `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(pdfUrl)}`,
+                        `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(publicPageUrl)}`,
                         '_blank'
                       );
                     }}
@@ -137,7 +135,7 @@ export default function Certificado() {
                 <div className="cert-card">
                   <section style={{ marginBottom: 18 }}>
                     <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 8 }}>Dados do responsável pela emissão:</h3>
-                    <p><b>Data e hora:</b> 23/06/2025 às 20h34</p>
+                    <p><b>Data e hora:</b> 30/06/2025 às 08h34</p>
                     <p><b>Razão social:</b> EMPRESA JÚNIOR DE ENGENHARIA DE CONTROLE E AUTOMAÇÃO DA UNIVERSIDADE FEDERAL DE OURO PRETO</p>
                     <p><b>CNPJ:</b> 25.969.088/0001-85</p>
                   </section>

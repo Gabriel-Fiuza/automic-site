@@ -9,16 +9,6 @@ export const certificados = {
     cargaHoraria: '40 horas',
     pdf: '/certificados/RJ3MVSJZ.pdf',
   },
-  '872BNSZ5': {
-    nome: 'Preencher',
-    funcao: 'Aluno(a)',
-    titulo: 'Treinamento de programação e manutenção do Controllogix, rede Ethernet , rede Devicenet e desenvolvimento de Sistema Supervisório em excel ministrado por Luiz da Matta.',
-    professor: 'Luiz da Matta',
-    dataRealizacao: '29 de junho de 2025',
-    local: 'Ouro Preto/MG',
-    cargaHoraria: '40 horas',
-    pdf: '/certificados/872BNSZ5.pdf',
-  },
   'NRQPPAWC': {
     nome: 'Diogo Freitas dos Santos Nascimento',
     funcao: 'Aluno(a)',
@@ -68,16 +58,6 @@ export const certificados = {
     local: 'Ouro Preto/MG',
     cargaHoraria: '40 horas',
     pdf: '/certificados/QPAHM2NJ.pdf',
-  },
-  'D2HYNJBK': {
-    nome: 'Preencher',
-    funcao: 'Aluno(a)',
-    titulo: 'Treinamento de programação e manutenção do Controllogix, rede Ethernet , rede Devicenet e desenvolvimento de Sistema Supervisório em excel ministrado por Luiz da Matta.',
-    professor: 'Luiz da Matta',
-    dataRealizacao: '29 de junho de 2025',
-    local: 'Ouro Preto/MG',
-    cargaHoraria: '40 horas',
-    pdf: '/certificados/D2HYNJBK.pdf',
   },
   'M3H5XLAJ': {
     nome: 'Leonardo Menezes Guimarães',
@@ -150,7 +130,7 @@ export const certificados = {
     pdf: '/certificados/7C7K4SRC.pdf',
   },
   'N63AHCBE': {
-    nome: 'monitora: Letícia Aparecida de Figueiredo',
+    nome: 'Letícia Aparecida de Figueiredo',
     funcao: 'Monitor(a)',
     titulo: 'Treinamento de programação e manutenção do Controllogix, rede Ethernet , rede Devicenet e desenvolvimento de Sistema Supervisório em excel ministrado por Luiz da Matta.',
     professor: 'Luiz da Matta',
