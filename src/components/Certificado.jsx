@@ -16,23 +16,44 @@ export default function Certificado() {
   const [dados, setDados] = useState(null);
 
   useEffect(() => {
-    if (window.location.hash) {
-      const cod = window.location.hash.replace('#', '').toUpperCase();
+  // Função para extrair o código do certificado
+  const extractCertCode = () => {
+    const path = window.location.pathname;
+    const hash = window.location.hash.replace('#', '').toUpperCase();
+    
+    // Caso 1: Rota específica de certificado
+    if (path.includes('/certificado') && hash) {
+      return hash;
+    }
+    // Caso 2: Hash na raiz (compatibilidade)
+    else if (hash) {
+      return hash;
+    }
+    
+    return null;
+  };
+
+  // Carrega os dados do certificado
+  const loadCertData = () => {
+    const cod = extractCertCode();
+    if (cod) {
       setCodigo(cod);
       setDados(certificados[cod] || null);
     } else {
       setCodigo('');
       setDados(null);
     }
-    // Atualiza ao mudar o hash
-    const onHashChange = () => {
-      const cod = window.location.hash.replace('#', '').toUpperCase();
-      setCodigo(cod);
-      setDados(certificados[cod] || null);
-    };
-    window.addEventListener('hashchange', onHashChange);
-    return () => window.removeEventListener('hashchange', onHashChange);
-  }, []);
+  };
+
+  // Carrega inicialmente
+  loadCertData();
+
+  // Atualiza quando o hash muda
+  const handleHashChange = () => loadCertData();
+  
+  window.addEventListener('hashchange', handleHashChange);
+  return () => window.removeEventListener('hashchange', handleHashChange);
+}, []);
 
   return (
     <div style={{
@@ -95,14 +116,14 @@ export default function Certificado() {
                   <button
                     className="cert-btn linkedin"
                     onClick={() => {
-                      // Sempre sugere o link público do certificado na Vercel
-                      const codigo = window.location.hash.replace('#', '').toUpperCase();
-                      const publicUrl = `https://automic.vercel.app/certificados/${codigo}.pdf`;
                       const publicPageUrl = `https://automic.vercel.app/certificado#${codigo}`;
-                      const textoSugestao =
-                        'Acabei de concluir o Treinamento de programação e manutenção do Controllogix, rede Ethernet, rede Devicenet e desenvolvimento de Sistema Supervisório em Excel ministrado por Luiz da Matta. Agradeço a Automic Jr.(Empresa Júnior de Engenharia de Controle e Automação da Escola de Minas de Ouro Preto) pelo apoio e organização, e a A3EM(Associação de Antigos Alunos da Escola de Minas) pelo espaço disponibilizado sendo ambas essenciais para melhor aproveitamento do curso. Obrigado também ao Luiz Mata e a Matta Automação. #automação #engenharia #certificado' +
-                        '\n\nVeja meu certificado em PDF: ' + publicUrl +
-                        '\nVeja aqui detalhes como a ementa do curso, imagens e o meu certificado! ' + publicPageUrl;
+                      const publicPdfUrl = `https://automic.vercel.app/certificados/${codigo}.pdf`;
+
+                      const textoSugestao = `Acabei de concluir o Treinamento de programação e manutenção do Controllogix, rede Ethernet, rede Devicenet e desenvolvimento de Sistema Supervisório em Excel ministrado por Luiz da Matta. Agradeço a Automic Jr.(Empresa Júnior de Engenharia de Controle e Automação da Escola de Minas de Ouro Preto) pelo apoio e organização, e a A3EM(Associação de Antigos Alunos da Escola de Minas) pelo espaço disponibilizado sendo ambas essenciais para melhor aproveitamento do curso. Obrigado também ao Luiz Mata e a Matta Automação. #automação #engenharia #certificado
+
+                      Veja meu certificado: ${publicPageUrl}
+                      Baixe o PDF: ${publicPdfUrl}`;
+
                       if (navigator.clipboard) {
                         navigator.clipboard.writeText(textoSugestao);
                         alert('Texto sugerido copiado! Ao abrir o LinkedIn, cole o texto na publicação.');
