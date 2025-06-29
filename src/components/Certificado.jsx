@@ -105,15 +105,47 @@ export default function Certificado() {
           }}
         >
           {/* Botão fixo, sempre absoluto no topo */}
-          <a
-            href={dados.pdf}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="cert-link cert-link-mobile"
-          >
-            {isMobile ? 'Visualizar Certificado' : 'Abrir em nova aba'}
-          </a>
+          {isMobile ? (
+  <div
+    className="cert-link-mobile cert-link-mobile-destaque"
+    style={{
+      position: 'absolute',
+      top: 12,
+      left: 12,
+      right: 12,
+      zIndex: 10,
+      background: '#e3f0ff', // azul bem claro
+      color: '#1a237e',
+      fontWeight: 700,
+      fontSize: '1.1rem',
+      borderRadius: 8,
+      padding: '12px 18px',
+      boxShadow: '0 2px 8px #0002',
+      textAlign: 'center',
+      border: '2px solid #1976d2', // azul médio
+      letterSpacing: 0.5,
+    }}
+  >
+    Visualize <b>AQUI</b> o certificado
+  </div>
+) : (
+  <a
+    href={dados.pdf}
+    target="_blank"
+    rel="noopener noreferrer"
+    className="cert-link"
+    style={{
+      position: 'absolute',
+      top: 12,
+      right: 12,
+      zIndex: 10,
+    }}
+  >
+    Abrir em nova aba
+  </a>
+)}
           <div
+            id='div_do_iframe'
             style={{
               width: '100%',
               minHeight: 650,
@@ -149,9 +181,12 @@ export default function Certificado() {
               />
             )}
           </div>
-          <a href={dados.pdf} target="_blank" rel="noopener noreferrer" className="cert-link">
-            Abrir em nova aba
-          </a>
+          {/* Apenas desktop: */}
+          {!isMobile && (
+            <a href={dados.pdf} target="_blank" rel="noopener noreferrer" className="cert-link">
+              Abrir em nova aba
+            </a>
+          )}
           {/* Barra de navegação abaixo do PDF */}
           <nav className="cert-nav">
             {/* Botão Download */}

@@ -3,7 +3,9 @@ import logo from '../assets/Logo-Branca.png';
 export default function Header() {
   return (
     <header className="header">
-      <img src={logo} alt="Logo Automic Jr." />
+      <a href="https://automic.vercel.app/" style={{ display: 'inline-block' }}>
+        <img src={logo} alt="Logo Automic Jr." style={{ cursor: 'pointer' }} />
+      </a>
       <nav>
         <ul className="nav-menu">
           <li><a href="#" onClick={e => { e.preventDefault(); window.scrollTo({top: 0, behavior: 'smooth'}); }}>Início</a></li>
