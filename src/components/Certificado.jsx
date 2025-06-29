@@ -171,7 +171,7 @@ export default function Certificado() {
                 <p>
                   {pdfError
                     ? 'Não foi possível carregar o PDF neste dispositivo ou navegador.'
-                    : 'Visualização do PDF não suportada neste dispositivo. Abra em um computador para visualizar o certificado.'}
+                    : 'Caso queira visualizar o certificado direto nesta página visite o link em um computador.'}
                 </p>
               </div>
             ) : (
