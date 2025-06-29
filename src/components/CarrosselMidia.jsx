@@ -19,6 +19,7 @@ export default function CarrosselMidia() {
   const [index, setIndex] = useState(0);
   const [fade, setFade] = useState(true);
   const [isHovered, setIsHovered] = useState(false);
+  const [loading, setLoading] = useState(true); // Adicionado estado de loading
   const intervalRef = useRef(null);
   const videoRef = useRef(null);
   const touchStartX = useRef(null);
@@ -46,6 +47,7 @@ export default function CarrosselMidia() {
   // Efeito de fade ao trocar de mídia
   useEffect(() => {
     setFade(false);
+    setLoading(true); // Ativa o loading ao trocar de mídia
     const timeout = setTimeout(() => setFade(true), 10); // trigger reflow
     return () => clearTimeout(timeout);
   }, [index]);
@@ -84,21 +86,7 @@ export default function CarrosselMidia() {
         }}
       />
       <div style={{ position: 'static', zIndex: 1, width: '100%' }}>
-        <div
-          style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            width: '100%',
-            minWidth: 745,  
-            maxWidth: 900,
-            minHeight: 300,
-            aspectRatio: '16/9',
-            margin: '0 auto',
-            position: 'relative',
-            background: 'transparent',
-          }}
-        >
+        <div className="carrossel-container">
           <button className="carrossel-btn" onClick={prev}>&lt;</button>
           <div
             style={{
@@ -127,12 +115,20 @@ export default function CarrosselMidia() {
                 borderRadius: 8,
                 boxShadow: '0 1px 4px #0002',
                 overflow: 'hidden',
+                position: 'relative',
               }}
             >
+              {loading && midia[index].type === 'image' && (
+                <div className="media-loader">
+                  <div className="loader-spinner"></div>
+                </div>
+              )}
+
               {midia[index].type === 'image' ? (
                 <img
                   src={midia[index].src}
                   alt="Carrossel"
+                  onLoad={() => setLoading(false)}
                   style={{
                     width: '100%',
                     height: '100%',
@@ -150,6 +146,8 @@ export default function CarrosselMidia() {
                   autoPlay
                   loop={false}
                   onEnded={next}
+                  onLoadedData={() => setLoading(false)}
+                  controlsList="nodownload"
                   style={{
                     width: '100%',
                     height: '100%',
