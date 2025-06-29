@@ -106,7 +106,10 @@ export default function Certificado() {
         >
           {/* Botão fixo, sempre absoluto no topo */}
           {isMobile ? (
-  <div
+  <a
+    href={dados.pdf}
+    target="_blank"
+    rel="noopener noreferrer"
     className="cert-link-mobile cert-link-mobile-destaque"
     style={{
       position: 'absolute',
@@ -124,10 +127,12 @@ export default function Certificado() {
       textAlign: 'center',
       border: '2px solid #1976d2', // azul médio
       letterSpacing: 0.5,
+      textDecoration: 'none',
+      display: 'block'
     }}
   >
     Visualize <b>AQUI</b> o certificado
-  </div>
+  </a>
 ) : (
   <a
     href={dados.pdf}
