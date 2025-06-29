@@ -457,7 +457,7 @@ body {
     min-width: 0 !important;
     max-width: 100% !important;
     margin: 0 !important;
-    max-height: 510px !important;
+    max-height: max-content !important;
   }
   .pdf-placeholder p {
     color: white;
