@@ -351,7 +351,7 @@ export default function Certificado() {
 
         {/* Conteúdo Programático abaixo, mesma cor de fundo */}
         <section id="conteudo_programático" className="cert-program">
-          <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 12 }}>Conteúdo Programático</h3>
+          <h3 style={{ color: 'var(--azul-escuro)', fontSize: '1.1rem', marginBottom: 12 }}>Conteúdo Programático da Primeira Apostila (Total: 4)</h3>
           <ul className="cert-list">
             <li>Módulo 1: Apresentação</li>
             <li>Módulo 2: Instalação da Máquina Virtual</li>

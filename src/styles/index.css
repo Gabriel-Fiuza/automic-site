@@ -444,12 +444,16 @@ body {
 }
 /* ----------- CERTIFICADO - MEDIA QUERIES BASE ----------- */
 
-/* MOBILE: até 500px */
-@media (max-width: 500px) {
+/* MOBILE: até 768px */
+@media (max-width: 768px) {
   .certificado-main {
     flex-direction: column !important;
     gap: 0 !important;
     padding: 0.5rem 0.1rem !important;
+  }
+  #div_do_iframe {
+  height: 360px !important;
+  min-height: 300px !important;
   }
   .certificado-pdf-col,
   .certificado-info-col {
@@ -465,12 +469,11 @@ body {
     max-width: 300px;
     background-color: lightslategray;
     border-radius: 8px;
-}
+  } 
   .cert-iframe {
     width: 100% !important;
-    min-height: 330px !important;
+    min-height: max-content !important;
     max-height: 60vw !important;
-    max-height: 80vh !important;
     background: #f2f2f2;
     display: block;
   }
@@ -505,21 +508,16 @@ body {
     margin: 0.5em 0;
     word-break: break-word;
   }
-  #atividades .carrossel-midia,
-  .carrossel-midia {
-    width: 100% !important;
-    max-width: 350px !important;
-    min-width: 0 !important;
-    margin: 0 auto !important;
-  }
-  #atividades .carrossel-midia img,
-  .carrossel-midia img {
-    max-width: 350px !important;
+  .carrossel-midia-content,
+  .carrossel-midia-content img,
+  .carrossel-midia-content video {
+    min-width: 200px !important;
+    max-width: 100% !important;
     height: auto !important;
-    display: block;
-    margin: 0 auto;
+    aspect-ratio: 16/9;
+    border-radius: 8px !important;
+    justify-content: center !important;
   }
-  .cert-section,
   .cert-section.center {
     max-width: 350px !important;
     min-width: 0 !important;
@@ -527,29 +525,55 @@ body {
     margin-right: 1vw !important;
     box-sizing: border-box !important;
     overflow-x: auto;
+  } 
+  #atividades-sobreA3EM-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
   }
-  #div_do_iframe {
-    height: 330px !important;
-    min-height: 300px !important;
-    padding: 0 !important;
+  #atividades {
+    order: 1 !important;
   }
-  
+  #sobreA3EM {
+    order: 2 !important;
+  }
+  .carrossel-container {
+    display: flex ;
+    flex-direction: row ;
+    align-items: center ;
+    justify-content: center ;
+    overflow-x: auto ;
+    width: 100% ;
+    max-height: max-content ;
+    min-height: auto ;
+    max-width: 300px ;
+    min-width: 210px ;
+  }
+  .carrossel-btn {
+    width: 36px !important;
+    height: 36px !important;
+    font-size: 1.2rem !important;
+    visibility: hidden;
+  }
+  .carrossel-indicators span {
+    width: 14px !important;
+    height: 14px !important;
+  }
 }
 
-/* TABLET: 501px até 800px */
-@media (min-width: 501px) and (max-width: 800px) {
+/* TABLET: 768px até 800px */
+@media (min-width: 768px) and (max-width: 991px) {
   .certificado-main {
     flex-direction: column !important;
     gap: 12px !important;
     padding: 1rem 0.5rem !important;
   }
-.certificado-pdf-col,
-.certificado-info-col {
-    width: 100% !important;
-    min-width: 0 !important;
-    max-width: 100% !important;
-    margin: 0 !important;
-}
+  .certificado-pdf-col,
+  .certificado-info-col {
+      width: 100% !important;
+      min-width: 0 !important;
+      max-width: 100% !important;
+      margin: 0 !important;
+  }
   .cert-iframe {
     width: 100% !important;
     min-height: 400px !important;
@@ -601,12 +625,22 @@ body {
     background: transparent !important;
     display: block !important;
   }
+  #atividades-sobreA3EM-wrapper {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  #atividades {
+    order: 1 !important;
+  }
+  #sobreA3EM {
+    order: 2 !important;
+  }
 }
 
-/* ----------- CERTIFICADO - DESKTOP (acima de 800px até 1500px) ----------- */
-@media (min-width: 801px) and (max-width: 1500px) {
+/* ----------- CERTIFICADO - DESKTOP telas menores (acima de 992px até 1199px) ----------- */
+@media (min-width: 992px) and (max-width: 1199px){
   .certificado-main {
-    max-width: 1300px;
+    max-width: max-content;
     margin: 0 auto;
     padding: 2rem 1rem;
     display: flex;
@@ -624,9 +658,152 @@ body {
   }
   .cert-iframe {
     width: 100% !important;
-    min-height: 350px !important;
     height: 60vw !important; /* Altura relativa à largura da tela */
-    max-height: 80vh !important; /* Nunca passa da altura da tela */
+    max-height: max-content !important; /* Nunca passa da altura da tela */
+    background: #f2f2f2;
+    display: block;
+  }
+  .cert-link {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: var(--azul-escuro);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 6px;
+    text-decoration: none;
+    font-size: 14px;
+    box-shadow: 0 1px 4px #0002;
+  }
+  .cert-nav {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255,255,255,0.97);
+    border-radius: 0 0 8px 8px;
+    box-shadow: 0 2px 8px #0001;
+    padding: 0.5rem 1.5rem;
+    gap: 16px;
+    position: relative;
+    top: 0;
+    z-index: 2;
+    flex-direction: row;
+  }
+  .cert-btn,
+  .cert-link {
+    width: auto;
+    font-size: 15px;
+    padding: 8px 18px;
+    box-sizing: border-box;
+  }
+  .certificado-info-col {
+    flex: 1 1 0;
+    position: relative;
+    max-width: 600px;
+    min-width: 320px;
+    margin-left: 0;
+  }
+  .cert-card {
+    background: rgba(255,255,255,0.97);
+    border-radius: 10px;
+    box-shadow: 0 2px 8px #0002;
+    padding: 1.5rem 2rem;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 10;
+    max-width: 600px;
+    line-height: 1.8;
+  }
+  .cert-section {
+    line-height: 1.6;
+    text-align: left;
+  }
+  .cert-list {
+    margin: 0;
+    padding-left: 24px;
+    columns: 2;
+    column-gap: 32px;
+    font-size: 1rem;
+    text-align: left;
+    width: 100%;
+    display: block;
+  }
+  .cert-list li {
+    display: list-item;
+    margin: 0 0 0.5em 0;
+    word-break: normal;
+  }
+  .cert-atividades-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+    max-width: 1200px;
+    margin: 32px auto 0 auto;
+    justify-content: center;
+    align-items: stretch;
+  }
+  .cert-program {
+    max-width: 1200px;
+    margin: 32px auto 0 auto;
+    background: var(--cinza-claro);
+    border-radius: 8px;
+    box-shadow: 0 1px 4px #0001;
+    padding: 2rem;
+    line-height: 2.1;
+    min-height: 320px;
+  }
+  .carrossel-container {
+    width: 90% !important;
+    max-width: 900px !important;
+    min-width: 400px !important;
+    margin: 0 auto !important;
+    aspect-ratio: 16/9;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: transparent;
+  }
+  .carrossel-midia-content,
+  .carrossel-midia-content img,
+  .carrossel-midia-content video {
+    width: 100% !important;
+    min-width: max-content !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    display: block !important;
+  }
+}
+
+@media (min-width: 1200px) {
+  .certificado-main {
+    max-width: max-content;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    display: flex;
+    gap: 32px;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    flex-direction: row;
+  }
+  .certificado-pdf-col {
+    flex: 0 1 800px;
+    min-width: 320px;
+    max-width: 900px;
+    position: relative;
+    width: 100%;
+  }
+  .cert-iframe {
+    width: 100% !important;
+    height: 60vw !important; /* Altura relativa à largura da tela */
+    max-height: max-content !important; /* Nunca passa da altura da tela */
     background: #f2f2f2;
     display: block;
   }
@@ -736,55 +913,32 @@ body {
     line-height: 2.1;
     min-height: 320px;
   }
-}
-
-/* MOBILE e TABLET: joga o #sobreA3EM para baixo do #atividades */
-@media (max-width: 800px) {
-  #atividades-sobreA3EM-wrapper {
-    display: flex !important;
-    flex-direction: column !important;
-  }
-  #atividades {
-    order: 1 !important;
-  }
-  #sobreA3EM {
-    order: 2 !important;
-  }
-}
-
-/* Container principal responsivo */
-.carrossel-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  max-width: 900px;
-  min-height: 300px;
-  aspect-ratio: 16/9;
-  margin: 0 auto;
-  position: relative;
-  background: transparent;
-}
-
-/* Mobile: até 500px */
-@media (max-width: 500px) {
   .carrossel-container {
-    width: 350px !important;
-    height: 53.5vw !important;
-    max-height: 60vh;
-    min-height: 200px;
-    max-width: 300px;
+    width: 90% !important;
+    max-width: 900px !important;
+    min-width: 400px !important;
+    margin: 0 auto !important;
+    aspect-ratio: 16/9;
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    background: transparent;
   }
-  .carrossel-btn {
-    width: 36px !important;
-    height: 36px !important;
-    font-size: 1.2rem !important;
+  .carrossel-midia-content,
+  .carrossel-midia-content img,
+  .carrossel-midia-content video {
+    width: 100% !important;
+    min-width: 680px !important;
+    max-width: 100% !important;
+    height: auto !important;
+    aspect-ratio: 16/9;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    display: block !important;
   }
-  .carrossel-indicators span {
-    width: 14px !important;
-    height: 14px !important;
-  }
-}   
+}
 
 /* Loader para mídias */
 .media-loader {

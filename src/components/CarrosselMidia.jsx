@@ -68,7 +68,7 @@ export default function CarrosselMidia() {
   };
 
   return (
-    <div className="carrossel-midia" style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', width: '100%', position: 'relative', overflow: 'visible' }}>
+    <div className="carrossel-midia" style={{  position: 'relative'}}>
       {/* Imagem de fundo fixa, com desfoque */}
       <img 
         src="/foto5carrossel.jpg" 
