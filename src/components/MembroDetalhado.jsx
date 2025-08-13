@@ -37,8 +37,9 @@ export default function MembroDetalhado() {
             src={membro.foto}
             alt={membro.nome}
             style={{
-              width: '450px',
-              height: '450px',
+              maxWidth: '100%',
+              maxHeight: '450px',
+              height: 'auto',
               objectFit: 'cover',
               border: '4px solid #FFC300', // Adiciona uma borda amarela vibrante
             }}
@@ -68,16 +69,55 @@ export default function MembroDetalhado() {
               </>
             )}
 
-            <button
-              onClick={() => window.history.back()}
+           <button
+              className="btn-linkedin"
+              onClick={() => window.open(membro.linkedin, '_blank')}
               style={{
+                marginRight: '0.5rem',
                 padding: '0.5rem 1rem',
-                backgroundColor: '#FFC300',
-                color: '#001330',
+                backgroundColor: '#0077b5',
+                color: '#fff',
                 border: 'none',
                 borderRadius: '5px',
                 cursor: 'pointer',
                 fontWeight: 'bold',
+                marginTop: '1rem',
+                marginLeft: '0.5rem',
+                fontSize: '1rem',
+              }}
+            >
+              LinkedIn
+            </button>
+            <button
+              className="btn-email"
+              onClick={() => window.location.href = `mailto:${membro.email}`}
+              style={{
+                padding: '0.5rem 1rem',
+                backgroundColor: '#d93025',
+                color: '#fff',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                marginTop: '1rem',
+                marginLeft: '0.5rem',
+              }}
+            >
+              Email
+            </button>
+            <button
+              onClick={() => window.history.back()}
+              style={{
+                padding: '0.5rem 1rem ',
+                backgroundColor: '#FFC300',
+                color: '#000000ff',
+                border: 'none',
+                borderRadius: '5px',
+                cursor: 'pointer',
+                fontWeight: 'bold',
+                marginTop: '1rem',
+                marginLeft: '0.5rem',
+                fontSize: '1rem',
               }}
             >
               Voltar
