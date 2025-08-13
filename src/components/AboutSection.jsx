@@ -50,7 +50,7 @@ export default function AboutSection() {
           {/* Card 1: Nossa Missão */}
           <card className="card-padrao">
             <cardHeader>
-              <img src="../../public/Icons/missao.png" alt="Imagem representativa" />
+              <img src="Icons/missao.png" alt="Imagem representativa" />
               <h3 >Nossa Missão</h3>
             </cardHeader>
             <p style={{ color: '#1e2531ff' }}>Contribuir com a população de Ouro Preto e Região por meio de soluções em automação e formar profissionais capazes de fazer a diferença no mundo.</p>
@@ -59,7 +59,7 @@ export default function AboutSection() {
           {/* Card 2: Nossa Visão */}
           <card className="card-padrao">
             <cardHeader>
-              <img src="../../public/Icons/lampada-de-ideia.png" alt="Imagem representativa" />
+              <img src="Icons/lampada-de-ideia.png" alt="Imagem representativa" />
               <h3 >Nossa Visão</h3>
             </cardHeader>
             <p style={{ color: '#1e2531ff' }}>Ser uma empresa autossuficiente, consolidada e que investe na vivência empresarial e práticas de seus membros.</p>
@@ -68,7 +68,7 @@ export default function AboutSection() {
           {/* Card 3: Nossos Valores */}
           <card className="card-padrao">
             <cardHeader>
-              <img src="../../public/Icons/valores.png" alt="Imagem representativa" />
+              <img src="Icons/valores.png" alt="Imagem representativa" />
               <h3 >Nossos Valores</h3>
             </cardHeader>
             <p style={{ color: '#1e2531ff' }}>Inovação, qualidade, colaboração, compromisso com a excelência técnica, desenvolvimento pessoal e impacto social.</p>
