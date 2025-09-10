@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { membrosData } from '../assets/membros/membrosData.js';
+import '../styles/AboutSection.css';
 
 export default function AboutSection() {
   const [filtroCargo, setFiltroCargo] = useState('');
@@ -21,26 +22,8 @@ export default function AboutSection() {
 
   return (
     <section
-      className="about-section"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh', // Centraliza verticalmente
-        padding: '2rem',
-      }}
-    >
-      <div
-        style={{
-          backgroundColor: '#f2f2f2c9', // Cor de fundo suave
-          padding: '2rem',
-          borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-          width: '80%',
-          textAlign: 'center',
-        }}
-      >
+      className="aboutSection">
+      <div className='aboutContent'>
         <h2 id="sobreTitulo">Sobre a Automic Jr.</h2>
         <p style={{ color: '#001330' }}>A Automic Jr. é a Empresa Júnior em Engenharia de Controle e Automação da Universidade Federal de Ouro Preto (UFOP), fundada em 2016. Nosso propósito é desenvolver soluções inovadoras e de alto impacto, ao mesmo tempo em que capacitamos nossos membros para o mercado de trabalho.</p>
         <p style={{ color: '#001330' }}>Somos parte do Movimento Empresa Júnior (MEJ), um dos maiores movimentos de empreendedorismo universitário do mundo, que promove a excelência e o impacto social através de projetos reais.</p>
@@ -77,15 +60,9 @@ export default function AboutSection() {
       </div>
       
       <div id='waveNossaEquipe'>
-        <h1 style={{ zIndex: 100 }}>Nossa Equipe</h1>
-        <div className="wave-line" style={{ zIndex: 0}}></div> {/* Linha com efeito de onda */}
-        <p style={{ 
-          marginBottom: '15rem', 
-          zIndex: 100, 
-          color: '#ffffffff',
-          fontSize: '1.2rem',
-          textAlign: 'center',
-        }}>Conheça os talentos que fazem a Automic Jr. acontecer </p>
+        <h1>Nossa Equipe</h1>
+        <div className="wave-line"></div> {/* Linha com efeito de onda */}
+        <p>Conheça os talentos que fazem a Automic Jr. acontecer </p>
       </div>
 
       {membrosPorDiretoria.map(({ diretoria, membros }) => (
@@ -99,18 +76,11 @@ export default function AboutSection() {
                 className="card group hover:shadow-brand transition-all duration-300 hover:-translate-y-1"
               >
                 <img
+                  className="diretoriasFoto"
                   src={membro.foto}
                   alt={membro.nome}
-                  style={{
-                    width: '100%',
-                    height: '200px',
-                    objectFit: 'cover',
-                    borderRadius: '8px',
-                    marginBottom: '1rem',
-                    boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
-                  }}
                 />
-                <h4 style={{ color: '#000000ff', fontSize: '1.2rem', margin: '0.5rem 0' }}>{membro.nome}</h4>
+                <h4>{membro.nome}</h4>
                 <p className="membro-info">
                   <b>Cargo:</b> {membro.cargo}
                 </p>

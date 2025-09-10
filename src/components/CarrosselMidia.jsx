@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../components/componentIndex.css';
+import '../styles/CarrosselMidia.css';
 
 const midia = [
   { type: 'image', src: '/foto1carrosel.jpg' },
@@ -68,55 +69,22 @@ export default function CarrosselMidia() {
   };
 
   return (
-    <div className="carrossel-midia" style={{  position: 'relative'}}>
+    <div className="carrosselMidia">
       {/* Imagem de fundo fixa, com desfoque */}
       <img 
+        className='carrosselMidiaImg'
         src="/foto5carrossel.jpg" 
-        alt="Fundo do carrossel" 
-        style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          width: '100%',
-          height: '100%',
-          objectFit: 'cover',
-          zIndex: 0,
-          filter: 'blur(10px) brightness(0.85)',
-          pointerEvents: 'none',
-        }}
-      />
+        alt="Fundo do carrossel"/>
       <div style={{ position: 'static', zIndex: 1, width: '100%' }}>
         <div className="carrossel-container">
           <button className="carrossel-btn" onClick={prev}>&lt;</button>
-          <div
-            style={{
-              flex: 1,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              height: '100%',
-              background: 'transparent',
-              position: 'relative',
-            }}
-          >
+          <div className='carrosselMidiaWrapper'>
             <div
-              className={`carrossel-midia-content ${fade ? 'carrossel-fade carrossel-fade-active' : 'carrossel-fade'}`}
+              className={`carrosselMidiaContent ${fade ? 'carrossel-fade carrossel-fade-active' : 'carrossel-fade'}`}
               onTouchStart={handleTouchStart}
               onTouchEnd={handleTouchEnd}
               onMouseEnter={() => setIsHovered(true)}
               onMouseLeave={() => setIsHovered(false)}
-              style={{
-                width: '100%',
-                height: '100%',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                background: 'transparent',
-                borderRadius: 8,
-                boxShadow: '0 1px 4px #0002',
-                overflow: 'hidden',
-                position: 'relative',
-              }}
             >
               {loading && midia[index].type === 'image' && (
                 <div className="media-loader">
@@ -126,19 +94,13 @@ export default function CarrosselMidia() {
 
               {midia[index].type === 'image' ? (
                 <img
+                  className='imageElement'
                   src={midia[index].src}
                   alt="Carrossel"
-                  onLoad={() => setLoading(false)}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    background: 'transparent',
-                    display: 'block',
-                  }}
-                />
+                  onLoad={() => setLoading(false)}/>
               ) : (
                 <video
+                  className='videoElement'
                   key={midia[index].src}
                   ref={videoRef}
                   src={midia[index].src}
@@ -147,33 +109,20 @@ export default function CarrosselMidia() {
                   loop={false}
                   onEnded={next}
                   onLoadedData={() => setLoading(false)}
-                  controlsList="nodownload"
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'contain',
-                    background: 'transparent',
-                    display: 'block',
-                  }}
-                />
+                  controlsList="nodownload"/>
               )}
             </div>
           </div>
           <button className="carrossel-btn" onClick={next}>&gt;</button>
         </div>
         {/* Indicadores (bolinhas) abaixo do carrossel */}
-        <div style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 18, width: '100%' }}>
+        <div className='labelCarrossel' style={{ display: 'flex', justifyContent: 'center', gap: 6, marginTop: 18, width: '100%' }}>
           {midia.map((item, i) => (
-            <span
+            <span className='spanItem'
               key={i}
               style={{
-                width: 12,
-                height: 12,
-                borderRadius: '50%',
+                // CSS inline pois envolve JS
                 background: i === index ? 'var(--azul-escuro, #1a237e)' : '#bbb',
-                display: 'inline-block',
-                transition: 'background 0.2s',
-                cursor: 'pointer',
                 border: i === index ? '2px solid #3949ab' : '2px solid transparent',
               }}
               onClick={() => setIndex(i)}
