@@ -217,3 +217,44 @@
     padding: 1.25rem;
   }
 }
+.aboutSection{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Centraliza verticalmente */
+    padding: 2rem;
+}
+.aboutContent{
+    background-color: #f2f2f2c9; /* Cor de fundo suave */
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 80%;
+    text-align: center;
+}
+.wave-line{
+    z-index: 0;
+}
+#waveNossaEquipe h1{
+    z-index: 1000;
+}
+#waveNossaEquipe p{ 
+    z-index: 1000;
+    color: #ffffffff;
+    font-size: 1.2rem;
+    text-align: center;
+}
+.diretoriasFoto{
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.diretorias-container h4{
+    color: #000000ff;
+    font-size: 1.2rem;
+    margin: 0.5rem 0
+}
