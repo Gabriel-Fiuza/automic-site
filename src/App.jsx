@@ -8,6 +8,7 @@ import Footer from './components/Footer';
 import Game from './components/Game';
 import Certificado from './components/Certificado';
 import MembroDetalhado from './components/MembroDetalhado';
+import Cursos from './components/Cursos';
 import './styles/index.css';
 
 export default function App() {
@@ -35,6 +36,16 @@ export default function App() {
             <>
               <Header />
               <AboutSection />
+              <Footer />
+            </>
+          }
+        />
+        <Route
+          path="/cursos"
+          element={
+            <>
+              <Header />
+              <Cursos />
               <Footer />
             </>
           }

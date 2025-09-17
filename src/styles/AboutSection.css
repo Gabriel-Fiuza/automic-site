@@ -1,0 +1,219 @@
+/* Importando as fontes do seu index.css */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+:root {
+  --primary-color: #001330;
+  --secondary-color: #002244;
+  --accent-color: #FFC300;
+  --text-light: #f2f2f2c9;
+  --text-dark: #1e2531ff;
+  --linkedin-blue: #0077b5;
+  --google-red: #d93025;
+}
+/* ============================================= */
+/* ESTILOS DA SEÇÃO PRINCIPAL 'ABOUT'            */
+/* ============================================= */
+.about-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 2rem;
+}
+
+/* ============================================= */
+/* CABEÇALHO DA SEÇÃO "NOSSA EQUIPE"             */
+/* ============================================= */
+.equipe-header {
+  /* O div que continha o H1 e o P com a "onda" */
+  position: relative; /* Necessário para o z-index funcionar */
+  text-align: center;
+  width: 100%;
+}
+
+.equipe-header h1 {
+  z-index: 100;
+  position: relative;
+}
+
+.equipe-header .wave-line {
+  z-index: 0;
+  /* Adicione aqui os estilos da sua onda, se houver */
+}
+
+.equipe-header p {
+  margin-bottom: 15rem; /* */
+  z-index: 100;
+  position: relative;
+  color: #ffffffff; /* */
+  font-size: 1.2rem; /* */
+  text-align: center; /* */
+}
+
+.membro-card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* */
+}
+
+.membro-card h4 {
+  color: #000000ff; /* */
+  font-size: 1.2rem;
+  margin: 0.5rem 0; /* */
+}
+.about-section p {
+  color:#1e2531ff; /* Sempre preto */
+  padding: 0.7rem; /* Padding considerável */
+  line-height: 1.6; /* Melhor legibilidade */
+}
+.about-section h3 {
+  color: #001330;
+  font-weight: bold;
+  padding: 1rem;
+  font-size: 2rem;
+  width: max-content;
+  border-bottom: 2px solid var(--amarelo-vibrante); /* Linha de destaque abaixo */
+  text-align: center; /* Centraliza o texto */
+  margin: 0 auto; /* Centraliza o elemento horizontalmente */
+  margin-bottom: 1rem;
+}
+.about-section h1 {
+  color: #001330;
+  font-weight: bold;
+  padding: 1rem;
+  font-size: 2rem;
+  width: max-content;
+  border-left: 2px solid var(--amarelo-vibrante); 
+  border-right: 2px solid var(--amarelo-vibrante); 
+  text-align: center; /* Centraliza o texto */
+  margin: 15rem 15rem 0 15rem; 
+}
+#sobreTitulo {
+  color: var(--azul-escuro); /* Cor do texto */
+  font-size: 2.5rem; /* Tamanho da fonte */
+  font-weight: bold; /* Negrito */
+  text-align: center; /* Centraliza o texto */
+  margin: 1rem auto; /* Espaçamento ao redor */
+  padding: 0.5rem; /* Espaçamento interno */
+  border-bottom: 2px solid var(--amarelo-vibrante); /* Linha de destaque abaixo */
+}
+#sobreCards{
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+.card-padrao {
+  background-color: #ffffff; /* Cor de fundo */
+  padding: 1.5rem; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra */
+  max-width: 300px; /* Largura fixa */
+  width: 100%; /* Ocupa toda a largura disponível */
+  text-align: center; /* Centraliza o texto */
+}
+.wave-line {
+  position: absolute;
+  width: 100%;
+  height: 250px;
+  background: linear-gradient(90deg, #FFC300, #001330);
+  overflow: hidden;
+  z-index: 0;
+}
+.wave-line::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background: linear-gradient(90deg, #FFC300, #001330);
+  animation: wave-animation 4s infinite linear;
+}
+@keyframes wave-animation {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+#waveNossaEquipe {
+  display: flex; /* Define o layout como flexbox */
+  flex-direction: column; /* Alinha os itens verticalmente */
+  justify-content: center; /* Centraliza os itens verticalmente */
+  align-items: center; /* Centraliza os itens horizontalmente */
+  width: 100vw; /* Ocupa toda a largura da tela */
+  height: 100vh; /* Ocupa toda a altura da tela */
+  position: relative; /* Permite o uso de z-index */
+  overflow: hidden; /* Garante que nada ultrapasse os limites */
+}
+.diretorias-container {
+  margin-bottom: 2rem; /* Espaçamento inferior */
+  display: flex; /* Define o layout como flexbox */
+  flex-wrap: wrap; /* Permite que os itens quebrem linha */
+  gap: 1rem; /* Espaçamento entre os itens */
+  padding: 1rem; /* Espaçamento interno */
+  justify-content: center; /* Centraliza os itens horizontalmente */
+}
+.membro-contatos {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.btn-linkedin {
+  padding: 0.5rem 1rem;
+  background-color: #0077b5; /* Cor do LinkedIn */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.btn-email {
+  padding: 0.5rem 1rem;
+  background-color: #d93025; /* Cor do Email */
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.card {
+  background-color: #ffffff; /* Cor de fundo */
+  padding: 1.5rem; /* Espaçamento interno */
+  border-radius: 8px; /* Bordas arredondadas */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra padrão */
+  width: 300px; /* Largura fixa */
+  text-align: center; /* Centraliza o texto */
+  transition: all 0.3s ease; /* Transição suave */
+}
+.card:hover {
+  box-shadow: var(--shadow-brand); /* Sombra personalizada no hover */
+  transform: translateY(-20px); /* Eleva o card no hover */
+   transform: scale(1.20);
+}
+
+#about-container {
+  background-color: #f2f2f2c9;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+@media (max-width: 800px) {
+  #about-container {
+    width: 95%;
+    padding: 1.25rem;
+  }
+}

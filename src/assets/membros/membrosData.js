@@ -102,12 +102,19 @@ export const membrosData = {
     nome: "Gabriel Paulinelli Fiuza",
     diretoria: "Diretoria de Projetos",
     cargo: "Gestor",
-    inicio: "2021",
+    inicio: "01/2025",
     foto: "/fotosmembros/Icone.jpg",
-    introdução: "Focado em desenvolvimento e execução de projetos.",
-    resumo: [],
-    email: "gabriel.fiuza@example.com",
-    linkedin: "https://www.linkedin.com/in/gabriel-fiuza/"
+    introdução: "Responsável por contribuir com ideias e executar os projetos dos clientes da Automic.",
+    resumo: ["Ingressei na Automic jr. em janeiro de 2025 e auxiliei na execução de projetos como o site da automic e o aplicativo destinado à Semana de Estudos da Escola Minas."],
+    Habilidades: [
+      "Programação com JavaScript, TypeScript, React e Node.js",
+      "Uso de Diversos Datasbases",
+      "Git e GitHub",
+      "Pacote Office completo",
+      "Inglês Avançado"
+    ],
+    email: "gpaulinellifiuza@gmail.com",
+    linkedin: "https://www.linkedin.com/in/gabriel-fiuza-136495296"
   },
   "alfredo": {
     nome: "Alfredo Luiz Moreira Silva",

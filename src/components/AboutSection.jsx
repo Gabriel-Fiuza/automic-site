@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { membrosData } from '../assets/membros/membrosData.js';
+import '../styles/AboutSection.css';
 
 export default function AboutSection() {
   const [filtroCargo, setFiltroCargo] = useState('');
@@ -22,28 +23,11 @@ export default function AboutSection() {
   return (
     <section
       className="about-section"
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        justifyContent: 'center',
-        alignItems: 'center',
-        minHeight: '100vh', // Centraliza verticalmente
-        padding: '2rem',
-      }}
     >
-      <div
-        style={{
-          backgroundColor: '#f2f2f2c9', // Cor de fundo suave
-          padding: '2rem',
-          borderRadius: '8px',
-          boxShadow: '0 4px 8px rgba(0, 0, 0, 0.1)',
-          width: '80%',
-          textAlign: 'center',
-        }}
-      >
+      <div id="about-container">
         <h2 id="sobreTitulo">Sobre a Automic Jr.</h2>
-        <p style={{ color: '#001330' }}>A Automic Jr. é a Empresa Júnior em Engenharia de Controle e Automação da Universidade Federal de Ouro Preto (UFOP), fundada em 2016. Nosso propósito é desenvolver soluções inovadoras e de alto impacto, ao mesmo tempo em que capacitamos nossos membros para o mercado de trabalho.</p>
-        <p style={{ color: '#001330' }}>Somos parte do Movimento Empresa Júnior (MEJ), um dos maiores movimentos de empreendedorismo universitário do mundo, que promove a excelência e o impacto social através de projetos reais.</p>
+        <p>A Automic Jr. é a Empresa Júnior em Engenharia de Controle e Automação da Universidade Federal de Ouro Preto (UFOP), fundada em 2016. Nosso propósito é desenvolver soluções inovadoras e de alto impacto, ao mesmo tempo em que capacitamos nossos membros para o mercado de trabalho.</p>
+        <p>Somos parte do Movimento Empresa Júnior (MEJ), um dos maiores movimentos de empreendedorismo universitário do mundo, que promove a excelência e o impacto social através de projetos reais.</p>
         
         {/* Adicionando os cards */}
         <div id="sobreCards">
@@ -53,7 +37,7 @@ export default function AboutSection() {
               <img src="Icons/missao.png" alt="Imagem representativa" />
               <h3 >Nossa Missão</h3>
             </cardHeader>
-            <p style={{ color: '#1e2531ff' }}>Contribuir com a população de Ouro Preto e Região por meio de soluções em automação e formar profissionais capazes de fazer a diferença no mundo.</p>
+            <p>Contribuir com a população de Ouro Preto e Região por meio de soluções em automação e formar profissionais capazes de fazer a diferença no mundo.</p>
           </card>
 
           {/* Card 2: Nossa Visão */}
@@ -62,7 +46,7 @@ export default function AboutSection() {
               <img src="Icons/lampada-de-ideia.png" alt="Imagem representativa" />
               <h3 >Nossa Visão</h3>
             </cardHeader>
-            <p style={{ color: '#1e2531ff' }}>Ser uma empresa autossuficiente, consolidada e que investe na vivência empresarial e práticas de seus membros.</p>
+            <p>Ser uma empresa autossuficiente, consolidada e que investe na vivência empresarial e práticas de seus membros.</p>
           </card>
 
           {/* Card 3: Nossos Valores */}
@@ -71,7 +55,7 @@ export default function AboutSection() {
               <img src="Icons/valores.png" alt="Imagem representativa" />
               <h3 >Nossos Valores</h3>
             </cardHeader>
-            <p style={{ color: '#1e2531ff' }}>Inovação, qualidade, colaboração, compromisso com a excelência técnica, desenvolvimento pessoal e impacto social.</p>
+            <p>Inovação, qualidade, colaboração, compromisso com a excelência técnica, desenvolvimento pessoal e impacto social.</p>
           </card>
         </div>
       </div>
@@ -110,7 +94,7 @@ export default function AboutSection() {
                     boxShadow: '0 2px 4px rgba(0, 0, 0, 0.1)',
                   }}
                 />
-                <h4 style={{ color: '#000000ff', fontSize: '1.2rem', margin: '0.5rem 0' }}>{membro.nome}</h4>
+                <h4>{membro.nome}</h4>
                 <p className="membro-info">
                   <b>Cargo:</b> {membro.cargo}
                 </p>
