@@ -104,7 +104,38 @@ function MetricsGrid({ metrics = [], recommendation }) {
 
 export default function Cursos() {
   const [openId, setOpenId] = useState(null);
-  const panelRefs = useRef({});
+  const panelRefs = useRef({}); // armazenar refs por id
+
+  // nova notificação para "Solicitar Curso"
+  const [notification, setNotification] = useState('');
+  const notificationTimer = useRef(null);
+
+  const solicitarCurso = (curso) => {
+    // limpa timer anterior
+    if (notificationTimer.current) clearTimeout(notificationTimer.current);
+
+    const message = `Para solicitar o curso "${curso.titulo}", entre em contato: dge.automicjr@gmail.com`;
+    setNotification(message);
+
+    // abre o cliente de email com assunto já preenchido
+    window.location.href = `mailto:dge.automicjr@gmail.com?subject=${encodeURIComponent(
+      'Solicitação de Curso: ' + curso.titulo
+    )}`;
+
+    // esconder notificação após 7s
+    notificationTimer.current = setTimeout(() => setNotification(''), 7000);
+  };
+
+  useEffect(() => {
+    return () => {
+      // cleanup refs
+      Object.values(panelRefs.current).forEach((el) => {
+        if (el) el.style.maxHeight = '';
+      });
+      // cleanup timer de notificação
+      if (notificationTimer.current) clearTimeout(notificationTimer.current);
+    };
+  }, []);
 
   const aggregatedMetrics = {
     geral: { label: 'Qualidade Geral (0-10)', value: '8.9' },
@@ -190,6 +221,15 @@ export default function Cursos() {
         </p>
       </header>
 
+      {/* notificação acessível (aparece ao clicar em Solicitar Curso) */}
+      <div
+        className={`solicitar-notification ${notification ? 'show' : ''}`}
+        role="status"
+        aria-live="polite"
+      >
+        {notification}
+      </div>
+
       <div className="cursos-content">
         {cursos.map((curso, index) => {
           const isOpen = openId === curso.id;
@@ -220,7 +260,7 @@ export default function Cursos() {
                   </button>
                   <button
                     className="curso-button primary"
-                    onClick={() => { /* ação de solicitar (placeholder) */ }}
+                    onClick={() => solicitarCurso(curso)}
                   >
                     Solicitar Curso
                   </button>

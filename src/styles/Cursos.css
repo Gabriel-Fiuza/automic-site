@@ -224,3 +224,39 @@ button:focus {
   .expanded-image { width: 100%; height: 200px; flex: none; }
   .expanded-info { width: 100%; max-width: none; }
 }
+/* notificação para Solicitar Curso */
+.solicitar-notification {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  max-width: 360px;
+  padding: 0.8rem 1rem;
+  background: linear-gradient(90deg, rgba(255,210,77,1), rgba(255,180,50,1));
+  color: #001322;
+  border-radius: 8px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  font-weight: 700;
+  opacity: 0;
+  transform: translateY(-6px);
+  transition: opacity .28s ease, transform .28s ease;
+  pointer-events: none;
+  z-index: 1200;
+}
+
+.solicitar-notification.show {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+/* reduzir impacto em telas pequenas */
+@media (max-width: 600px) {
+  .solicitar-notification {
+    left: 1rem;
+    right: 1rem;
+    top: auto;
+    bottom: 1rem;
+    max-width: none;
+    text-align: center;
+  }
+}
