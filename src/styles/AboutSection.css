@@ -34,6 +34,7 @@
 .equipe-header h1 {
   z-index: 100;
   position: relative;
+  color: #ffffffff; /* */
 }
 
 .equipe-header .wave-line {
@@ -89,7 +90,7 @@
   border-left: 2px solid var(--amarelo-vibrante); 
   border-right: 2px solid var(--amarelo-vibrante); 
   text-align: center; /* Centraliza o texto */
-  margin: 15rem 15rem 0 15rem; 
+  
 }
 #sobreTitulo {
   color: var(--azul-escuro); /* Cor do texto */
@@ -257,4 +258,17 @@
     color: #000000ff;
     font-size: 1.2rem;
     margin: 0.5rem 0
+}
+.equipe-header .wave-title,
+.equipe-header h1 { 
+  /* gradiente invertido conforme pediu */
+  background: linear-gradient(90deg, #001330 0%, #FFC300 150%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent; /* Safari/Chrome */
+  color: #001330; /* fallback caso background-clip não seja suportado */
+  position: relative;
+  z-index: 2;
+  margin: 15rem 0 1rem 0;
+
 }

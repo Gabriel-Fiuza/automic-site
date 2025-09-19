@@ -60,8 +60,8 @@ export default function AboutSection() {
           </card>
         </div>
       </div>
-      
-      <div id='waveNossaEquipe'>
+
+      <div class='equipe-header' id='waveNossaEquipe'>
         <h1>Nossa Equipe</h1>
         <div className="wave-line"></div> {/* Linha com efeito de onda */}
         <p>Conheça os talentos que fazem a Automic Jr. acontecer </p>
@@ -82,7 +82,6 @@ export default function AboutSection() {
                   src={membro.foto}
                   alt={membro.nome}
                 />
-                <h4>{membro.nome}</h4>
                 <h4>{membro.nome}</h4>
                 <p className="membro-info">
                   <b>Cargo:</b> {membro.cargo}

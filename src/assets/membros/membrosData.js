@@ -4,62 +4,62 @@ export const membrosData = {
     diretoria: "Diretoria de Mercado",
     cargo: "Diretor",
     inicio: "2020",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/geovaneVieira.jpg",
     introdução: "Responsável pela liderança da Diretoria de Mercado.",
     resumo: [],
     email: "geovane.vieira@example.com",
-    linkedin: "https://www.linkedin.com/in/geovane-vieira/"
+    linkedin: "https://www.linkedin.com/in/geovane-gon%C3%A7alves-vieira-6093b320b/"
   },
   "gustavo": {
     nome: "Gustavo Henrique Pinto Reis",
     diretoria: "Diretoria de Mercado",
     cargo: "Gestor",
     inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/gustavo.jpg",
     introdução: "Atua na gestão de estratégias de mercado.",
     resumo: [],
     email: "gustavo.reis@example.com",
-    linkedin: "https://www.linkedin.com/in/gustavo-reis/"
+    linkedin: ""
   },
   "leonardo": {
     nome: "Leonardo Menezes Guimarães",
     diretoria: "Diretoria de Mercado",
     cargo: "Gestor",
     inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/leoMenezes.jpg",
     introdução: "Focado em desenvolvimento de soluções para o mercado.",
     resumo: [],
     email: "leonardo.guimaraes@example.com",
-    linkedin: "https://www.linkedin.com/in/leonardo-guimaraes/"
+    linkedin: ""
   },
   "rafael": {
     nome: "Rafael Dutra Teixeira",
     diretoria: "Diretoria de Mercado",
     cargo: "Gestor",
     inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/rafael_dutra.jpg",
     introdução: "Responsável por análise de mercado e estratégias.",
     resumo: [],
     email: "rafael.teixeira@example.com",
-    linkedin: "https://www.linkedin.com/in/rafael-teixeira/"
+    linkedin: "https://www.linkedin.com/in/rafael-dutra-a6649124b/"
   },
   "gabriel-guedes": {
     nome: "Gabriel Henrique Silva Guedes",
     diretoria: "Diretoria de Mercado",
     cargo: "Gestor",
-    inicio: "2021",
+    inicio: "08/2025",
     foto: "/fotosmembros/Icone.jpg",
     introdução: "Especialista em comunicação e marketing.",
-    resumo: [],
-    email: "gabriel.guedes@example.com",
-    linkedin: "https://www.linkedin.com/in/gabriel-guedes/"
+    resumo: ["Possuo habilidades em solucionar alguns problemas de analise de dados, automação predial e ESP32."],
+    email: "gabriel.guedes@aluno.ufop.edu.br",
+    linkedin: "https://www.linkedin.com/in/gabrielguedesx"
   },
   "shanaya": {
     nome: "Shanaya Ketelyn de Souza",
     diretoria: "Diretoria de Mercado",
     cargo: "Gestora",
     inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/shanaya.jpg",
     introdução: "Focada em estratégias de mercado e inovação.",
     resumo: [],
     email: "shanaya.souza@example.com",
@@ -70,22 +70,29 @@ export const membrosData = {
     diretoria: "Diretoria de Mercado",
     cargo: "Gestor",
     inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/leandro.jpg",
     introdução: "Responsável por desenvolvimento de projetos de mercado.",
     resumo: [],
     email: "leandro.goncalves@example.com",
-    linkedin: "https://www.linkedin.com/in/leandro-goncalves/"
+    linkedin: ""
   },
   "samuel-asafe": {
     nome: "Samuel Asafe Almeida Oliveira",
     diretoria: "Diretoria de Projetos",
     cargo: "Diretor",
-    inicio: "2020",
-    foto: "/fotosmembros/Icone.jpg",
+    inicio: "01/2025",
+    foto: "/fotosmembros/samuelAsafe.jpg",
     introdução: "Lidera a Diretoria de Projetos com foco em inovação.",
-    resumo: [],
-    email: "samuel.asafe@example.com",
-    linkedin: "https://www.linkedin.com/in/samuel-asafe/"
+    resumo: [
+      "Entrei no início de 2025 já na parte de Projetos, onde identifiquei que era a parte que tinha afeição dentro da empresa. Após finalizar o período que entrei, houve o convite do Diretor de DGE e Projetos para que eu assumisse a diretoria."
+    ],
+    Habilidades: [
+      "Elaboração de Documentos, escuta ativa, Comunicação interpessoal e BI",
+      "Especialização Técnica do SISTEMA CONTROLLOGIX e REDES INDUSTRIAIS, com ênfase prática em DEVICENET e DESENVOLVIMENTO SUPERVISÓRIO EXCEL",
+      " CAD, programação, banco de dados, programação de clp"
+    ],
+    email: "samuelazafe2@gmail.com ",
+    linkedin: "https://www.linkedin.com/in/samuel-asafe-145b1b334"
   },
   "matheus-martins": {
     nome: "Matheus Martins Bitarães",
@@ -103,7 +110,7 @@ export const membrosData = {
     diretoria: "Diretoria de Projetos",
     cargo: "Gestor",
     inicio: "01/2025",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/gabrielFiuza.jpg",
     introdução: "Responsável por contribuir com ideias e executar os projetos dos clientes da Automic.",
     resumo: ["Ingressei na Automic jr. em janeiro de 2025 e auxiliei na execução de projetos como o site da automic e o aplicativo destinado à Semana de Estudos da Escola Minas."],
     Habilidades: [
@@ -120,34 +127,38 @@ export const membrosData = {
     nome: "Alfredo Luiz Moreira Silva",
     diretoria: "Diretoria de Projetos",
     cargo: "Gestor",
-    inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    inicio: "08/2025",
+    foto: "/fotosmembros/alfredo.jpg",
     introdução: "Responsável por coordenação de projetos estratégicos.",
     resumo: [],
-    email: "alfredo.silva@example.com",
-    linkedin: "https://www.linkedin.com/in/alfredo-silva/"
+    Habilidades: ["eletrônica", "prototipagem", "micro controladores"],
+    email: "alfredoluis848@gmail.com",
+    linkedin: "https://www.linkedin.com/in/alfredo-luis?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
   },
   "fabio-daniel": {
     nome: "Fabio Daniel Miranda Pedrosa",
     diretoria: "Diretoria de Projetos",
     cargo: "Gestor",
-    inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    inicio: "08/2025",
+    foto: "/fotosmembros/fabio.jpg",
     introdução: "Atua na gestão de projetos de automação.",
     resumo: [],
-    email: "fabio.pedrosa@example.com",
-    linkedin: "https://www.linkedin.com/in/fabio-pedrosa/"
+    Habilidades: [
+      "Boa base nos fundamentos teóricos nas disciplinas do curso de controle e automação, entre elas, programação, circuitos e dispositivos eletrônicos, eletrotécnica, além de já ter realizado trabalhos teóricos sobre automação em vias urbanas.",
+    ],
+    email: "fabio.pedrosa@aluno.ufop.edu.br",
+    linkedin: "https://www.linkedin.com/in/fabio~daniel/"
   },
   "joao-paulo": {
     nome: "João Paulo Rocha Andrade",
     diretoria: "Diretoria de Projetos",
     cargo: "Gestor",
-    inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
-    introdução: "Especialista em planejamento e execução de projetos.",
+    inicio: "08/2025",
+    foto: "/fotosmembros/joao_paulo.jpg",
+    introdução: "Sou gestor de projetos, responsável por executar e concluir projetos, garantindo que os objetivos sejam alcançados dentro do prazo.",
     resumo: [],
-    email: "joao.andrade@example.com",
-    linkedin: "https://www.linkedin.com/in/joao-andrade/"
+    email: "pjao.gt2004@gmail.com",
+    linkedin: "https://www.linkedin.com/in/joao-paulo-rocha-andrade-3b051b380/"
   },
   "samuel-anjos": {
     nome: "Samuel dos Anjos Silva",
@@ -164,8 +175,8 @@ export const membrosData = {
     nome: "Davi Figueiredo Mourão",
     diretoria: "Diretoria de Gestão Estratégica",
     cargo: "Diretor",
-    inicio: "2024.1",
-    foto: "/fotosmembros/IMG-20241106-WA0026.jpg",
+    inicio: "03/2024",
+    foto: "/fotosmembros/davi.jpg",
     introdução: "Lidera equipes e supervisiona membros, coordena processos seletivos, além de organizar o calendário interno e buscar capacitações e parcerias estratégicas.",
     resumo: [
       "Entrei na Automic como gestor de mercado e posterior me candidatei para diretor da Diretoria de Gestão Estratégica aonde estou atualmente, esta mudança motivada pela oportunidade de melhoria de todos os aspectos internos da empresa, como a parte de gestão de pessoas, organização empresarial e parcerias.",
@@ -185,7 +196,7 @@ export const membrosData = {
     diretoria: "Diretoria de Gestão Estratégica",
     cargo: "Gestor",
     inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/vilker.jpg",
     introdução: "Focado em estratégias de gestão e eficiência.",
     resumo: [],
     email: "vilker.pereira@example.com",
@@ -196,22 +207,28 @@ export const membrosData = {
     diretoria: "Diretoria de Gestão Estratégica",
     cargo: "Gestor",
     inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    foto: "/fotosmembros/pedroBraga.jpg",
     introdução: "Especialista em planejamento estratégico.",
     resumo: [],
     email: "pedro.braga@example.com",
-    linkedin: "https://www.linkedin.com/in/pedro-braga/"
+    linkedin: ""
   },
   "michel": {
     nome: "Michel Alessandro Borges Pereira",
     diretoria: "Diretoria de Gestão Estratégica",
     cargo: "Gestor",
-    inicio: "2021",
-    foto: "/fotosmembros/Icone.jpg",
+    inicio: "08/2025",
+    foto: "/fotosmembros/michel.jpg",
     introdução: "Responsável por coordenação de processos internos.",
-    resumo: [],
-    email: "michel.pereira@example.com",
-    linkedin: "https://www.linkedin.com/in/michel-pereira/"
+    resumo: ["Como membro de DGE faço a parte mais humana dentro da empresa, auxiliando a diretoria em planos para os membros, e gerenciamento dos mesmo."],
+    Habilidades: [
+      "Python",
+      "C++",
+      "JavaScript",
+      "Modelagem 3D(blender e ultimaker Cura)",
+    ],
+    email: "borgesmichel1320@gmail.com",
+    linkedin: "https://www.linkedin.com/in/michel-borges-3b6a99214/"
   },
   "nicolas": {
     nome: "Nicolas Conrado de Campos Braga",
@@ -228,12 +245,25 @@ export const membrosData = {
     nome: "Matheus Henrique da Costa Baldez",
     diretoria: "Diretoria de Presidência",
     cargo: "Diretor Presidente",
-    inicio: "2020",
-    foto: "/fotosmembros/Icone.jpg",
-    introdução: "Lidera a Automic Jr. como Diretor Presidente.",
-    resumo: [],
-    email: "matheus.baldez@example.com",
-    linkedin: "https://www.linkedin.com/in/matheus-baldez/"
+    inicio: "03/2024",
+    foto: "/fotosmembros/matheusBaldez.jpg",
+    introdução: "Lidera a Automic Jr. como Diretor Presidente.Meus encargos são os de redigir os Termos de Voluntariado, conduzir o Processo Eletivo, administrar as finanças da Empresa e redigir os contratos de serviços que Automic presta. Além disso, sou responsável, junto com DGE, por marcar Integrações.",
+    resumo: [
+      "Iniciei na empresa em 2024 como Gestor de Presidência. Permaneci quase um ano nesse cargo. Com a saída do antigo Presidente, me candidatei ao cargo e fui escolhido como o mais novo Diretor Presidente.",
+      "Desenvoltura em apresentação de projetos; Alta adaptabilidade; Pró-atividade; Rápida aprendizagem; Trabalho em grupo; Liderança;"
+    ],
+    Habilidades: [
+      "Microsoft Excel",
+      "Programação em Python",
+      "Programação em C++",
+      "Programação e desenvolvimento de projetos em Arduino",
+      "Programação de CLP’s",
+      "Elétrica",
+      "Eletrônica",
+      "Acionamentos eletroeletrônicos"
+    ],
+    email: "matheus.baldez@aluno.ufop.edu.br",
+    linkedin: "https://www.linkedin.com/in/matheus-baldez01"
   },
   "ricardo-maroca": {
     nome: "Ricardo Maroca de Avelar Rivelli de Oliveira",
