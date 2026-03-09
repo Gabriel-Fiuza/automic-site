@@ -1,5 +1,5 @@
 import logo from '../assets/Logo-Branca.png';
-
+import '../styles/Header.css';
 export default function Header() {
   const homepage = 'https://automic.vercel.app';
 

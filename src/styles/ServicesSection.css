@@ -1,0 +1,19 @@
+.services-img {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+.services-img img {
+  margin-left: 2rem;
+}
+
+@media (max-width: 1024px) {
+  .services-img { margin-left: 5rem; }
+}
+@media (max-width: 768px) {
+  .services-img { margin-left: .9rem; }
+  .services-img img { margin-left: 0; }
+}
+@media (max-width: 426px) {
+  .services-img img { margin-left: 0; }
+}

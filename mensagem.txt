@@ -1,0 +1,34 @@
+feat(core): migração completa para Firebase, arquitetura relacional de dados e refatoração global de UI/CSS
+
+Esta atualização transforma a arquitetura estática do site da Automic Jr. em uma aplicação dinâmica e escalável baseada no Firebase Firestore, além de aplicar uma refatoração massiva na estrutura de estilos (Separation of Concerns) e aprimorar a responsividade UI/UX para dispositivos móveis e desktops.
+
+🔥 BANCO DE DADOS & BACKEND (FIREBASE)
+- Migração de todos os dados estáticos (Membros, Cursos e Certificados) para a nuvem (Firestore).
+- Implementação de Arquitetura Relacional: Criação da coleção `detalhes_cursos` que se relaciona com os `certificados` através da chave `cursoId`, eliminando dados chumbados (hardcoded) no Front-end.
+- Criação de CLI/Scripts de Administração local (`scripts_firebase/`):
+  * `migrate.js`: Migração inicial de base de dados.
+  * `atualizar_diretoria.js`: Script interativo via terminal para promover membros e realocá-los de diretoria com segurança.
+  * `gerar_novos_certificados.js`: Geração algorítmica de códigos únicos e criação automatizada de QR Codes com a logo e link da Automic via Node.js.
+  * `setup_relacionamento_cursos.js` & `atualizar_data_emissao.js`: Injeção e atualização em massa de ementas, carga horária e metadados estruturais dos cursos.
+
+⚛️ FRONT-END & COMPONENTES REACT
+- `AboutSection.jsx` e `MembroDetalhado.jsx`: Agora consomem dados da equipe em tempo real da nuvem. Adicionada lógica de ordenação (sort) para garantir que Diretores e o Diretor Presidente fiquem sempre no topo da exibição.
+- `Cursos.jsx`: Renderização de turmas e modalidades buscando da coleção dinamicamente e com ordenação correta.
+- `Certificado.jsx`: Refatoração absoluta. O componente agora intercepta o Hash da URL, consulta o aluno e, em seguida, faz um fetch relacional automático da ementa e atividades correspondentes ao seu respectivo curso (Automação ou Front-End).
+- `CarrosselMidia.jsx`: Componente transformado em utilitário puro (Dumb Component), recebendo agora sua lista de mídias dinamicamente via `props`.
+
+🎨 ARQUITETURA CSS & UI/UX
+- Refatoração total (Separation of Concerns): Extinção do `componentIndex.css` e do "Frankenstein" do `index.css`. Separação em arquivos modulares (Header.css, Footer.css, Cursos.css, AboutSection.css, etc.).
+- Conserto de Overflow no Carrossel: Imagem borrada travada nos limites do componente usando `overflow: hidden`, `box-sizing` e layouts flexíveis.
+- Otimização UI do Certificado:
+  * Troca do fundo borrado pesado por um solid background (`var(--azul-escuro)`) garantindo imersão de marca e performance.
+  * Reestruturação da "Caixa de Datas", movida logicamente para baixo dos botões de ação para melhorar o fluxo de leitura.
+  * Correção de quebra de linha de títulos longos via `display: inline-block` e `word-wrap: break-word`.
+  * Ajuste de breakpoint de Desktop (1200px) com `justify-content: center` para evitar vazios laterais em telas de notebook.
+- Perfeição Mobile (App-like feel):
+  * Renderização nativa do iFrame de PDF liberada para celulares.
+  * Adição de botão flutuante estilizado ("Abrir PDF") sobreposto ao documento para fail-safe de navegadores mobile limitados.
+  * Maior respiro lateral (padding), botões 100% block size para touch-targets ideais e menus dropdown centralizados.
+
+📁 ORGANIZAÇÃO DE ASSETS
+- Separação física de mídias por contexto (`/curso07022026`, `/curso29062025`, `/fotosmembros`, `/certificados`), facilitando manutenções futuras sem poluir a root da pasta `public`.

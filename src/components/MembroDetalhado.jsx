@@ -1,22 +1,73 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { membrosData } from '../assets/membros/membrosData.js';
+import { doc, getDoc } from 'firebase/firestore';
+import { db } from '../services/firebase';
+
 import Header from './Header';
 import Footer from './Footer';
 
 export default function MembroDetalhado() {
   const { id } = useParams(); // Obtém o ID do membro a partir da URL
-  const membro = membrosData[id]; // Busca os dados do membro pelo ID
+  
+  // 2. Criamos os estados para guardar os dados e o controle de carregamento
+  const [membro, setMembro] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  // Força o scroll para o topo ao carregar a página
+  // Força o scroll para o topo e busca os dados
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, []);
 
-  if (!membro) {
-    return <p style={{ color: '#fff', textAlign: 'center', marginTop: '2rem' }}>Membro não encontrado.</p>; // Caso o ID seja inválido
+    const fetchMembro = async () => {
+      setLoading(true);
+      try {
+        // Referência direta ao documento usando o ID da URL (ex: "matheus-baldez")
+        const docRef = doc(db, 'membros', id);
+        const docSnap = await getDoc(docRef);
+
+        if (docSnap.exists()) {
+          setMembro(docSnap.data()); // Achou o membro!
+        } else {
+          setMembro(null); // Documento não existe
+        }
+      } catch (error) {
+        console.error("Erro ao buscar membro:", error);
+        setMembro(null);
+      } finally {
+        setLoading(false); // Terminou de carregar
+      }
+    };
+
+    if (id) {
+      fetchMembro();
+    }
+  }, [id]); // O useEffect vai rodar de novo se o ID da URL mudar
+
+  // 3. Telas de feedback (Carregando ou Não encontrado)
+  if (loading) {
+    return (
+      <>
+        <Header />
+        <section style={{ padding: '2rem', backgroundColor: '#001330', minHeight: '100vh', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <h2>Carregando dados do membro...</h2>
+        </section>
+        <Footer />
+      </>
+    );
   }
 
+  if (!membro) {
+    return (
+      <>
+        <Header />
+        <section style={{ padding: '2rem', backgroundColor: '#001330', minHeight: '100vh', color: '#fff', display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
+          <h2>Membro não encontrado na base de dados.</h2>
+        </section>
+        <Footer />
+      </>
+    );
+  }
+
+  // 4. Renderização com os dados da nuvem
   return (
     <>
       <Header />
@@ -27,7 +78,7 @@ export default function MembroDetalhado() {
             alignItems: 'center',
             justifyContent: 'center',
             gap: '2rem',
-            backgroundColor: '#002244', // Fundo suave para diferenciar
+            backgroundColor: '#002244',
             padding: '2rem',
             boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
           }}
@@ -41,7 +92,7 @@ export default function MembroDetalhado() {
               maxHeight: '450px',
               height: 'auto',
               objectFit: 'cover',
-              border: '4px solid #FFC300', // Adiciona uma borda amarela vibrante
+              border: '4px solid #FFC300',
             }}
           />
 
@@ -52,13 +103,13 @@ export default function MembroDetalhado() {
             <p style={{ marginBottom: '0.5rem' }}><b>Cargo:</b> {membro.cargo}</p>
             <p style={{ marginBottom: '0.5rem' }}><b>Início:</b> {membro.inicio}</p>
             
-            {/* Renderiza múltiplos parágrafos para o resumo */}
-            {membro.resumo.map((paragrafo, index) => (
+            {/* Renderiza o resumo com proteção caso o array esteja vazio ou não exista */}
+            {(membro.resumo || []).map((paragrafo, index) => (
               <p key={index} style={{ marginBottom: '1rem' }}>{paragrafo}</p>
             ))}
 
-            {/* Renderiza habilidades técnicas como uma lista */}
-            {membro['Habilidades'] && (
+            {/* Renderiza habilidades técnicas */}
+            {membro['Habilidades'] && membro['Habilidades'].length > 0 && (
               <>
                 <h3 style={{ marginTop: '1rem', marginBottom: '0.5rem' }}>Habilidades Técnicas desenvolvidas na Automic:</h3>
                 <ul style={{ paddingLeft: '1.5rem', marginBottom: '1rem' }}>
@@ -71,7 +122,13 @@ export default function MembroDetalhado() {
 
            <button
               className="btn-linkedin"
-              onClick={() => window.open(membro.linkedin, '_blank')}
+              onClick={() => {
+                 if(membro.linkedin) {
+                    window.open(membro.linkedin, '_blank');
+                 } else {
+                    alert("Este membro ainda não adicionou o LinkedIn.");
+                 }
+              }}
               style={{
                 marginRight: '0.5rem',
                 padding: '0.5rem 1rem',
@@ -90,7 +147,13 @@ export default function MembroDetalhado() {
             </button>
             <button
               className="btn-email"
-              onClick={() => window.location.href = `mailto:${membro.email}`}
+              onClick={() => {
+                 if(membro.email) {
+                    window.location.href = `mailto:${membro.email}`;
+                 } else {
+                    alert("E-mail não disponível.");
+                 }
+              }}
               style={{
                 padding: '0.5rem 1rem',
                 backgroundColor: '#d93025',

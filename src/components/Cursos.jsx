@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import '../styles/Cursos.css';
+import { collection, getDocs } from 'firebase/firestore';
+import { db } from '../services/firebase';
 
 function generateRealFeedbacks() {
   return [
@@ -104,35 +106,49 @@ function MetricsGrid({ metrics = [], recommendation }) {
 
 export default function Cursos() {
   const [openId, setOpenId] = useState(null);
-  const panelRefs = useRef({}); // armazenar refs por id
-
-  // nova notificação para "Solicitar Curso"
+  const panelRefs = useRef({}); 
   const [notification, setNotification] = useState('');
   const notificationTimer = useRef(null);
 
-  const solicitarCurso = (curso) => {
-    // limpa timer anterior
-    if (notificationTimer.current) clearTimeout(notificationTimer.current);
+  // 2. Novos estados para o banco de dados
+  const [cursos, setCursos] = useState([]);
+  const [loading, setLoading] = useState(true);
 
+  // 3. Efeito para buscar os cursos do Firebase
+  useEffect(() => {
+    const fetchCursos = async () => {
+      try {
+        const querySnapshot = await getDocs(collection(db, "cursos"));
+        const listaCursos = [];
+        
+        querySnapshot.forEach((doc) => {
+          listaCursos.push({ id: doc.id, ...doc.data() }); // O ID agora é a chave (ex: curso-automacao-2025)
+        });
+
+        // Ordena os cursos pelo campo 'ordem' que criamos
+        listaCursos.sort((a, b) => a.ordem - b.ordem);
+        setCursos(listaCursos);
+      } catch (error) {
+        console.error("Erro ao buscar cursos:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCursos();
+  }, []);
+
+  const solicitarCurso = (curso) => {
+    if (notificationTimer.current) clearTimeout(notificationTimer.current);
     const message = `Para solicitar o curso "${curso.titulo}", entre em contato: dge.automicjr@gmail.com`;
     setNotification(message);
-
-    // abre o cliente de email com assunto já preenchido
-    window.location.href = `mailto:dge.automicjr@gmail.com?subject=${encodeURIComponent(
-      'Solicitação de Curso: ' + curso.titulo
-    )}`;
-
-    // esconder notificação após 7s
+    window.location.href = `mailto:dge.automicjr@gmail.com?subject=${encodeURIComponent('Solicitação de Curso: ' + curso.titulo)}`;
     notificationTimer.current = setTimeout(() => setNotification(''), 7000);
   };
 
   useEffect(() => {
     return () => {
-      // cleanup refs
-      Object.values(panelRefs.current).forEach((el) => {
-        if (el) el.style.maxHeight = '';
-      });
-      // cleanup timer de notificação
+      Object.values(panelRefs.current).forEach((el) => { if (el) el.style.maxHeight = ''; });
       if (notificationTimer.current) clearTimeout(notificationTimer.current);
     };
   }, []);
@@ -149,13 +165,8 @@ export default function Cursos() {
     const prevId = openId;
     const nextId = prevId === id ? null : id;
 
-    if (prevId && panelRefs.current[prevId]) {
-      panelRefs.current[prevId].classList.remove('expanded');
-    }
-
-    if (nextId && panelRefs.current[nextId]) {
-      panelRefs.current[nextId].classList.add('expanded');
-    }
+    if (prevId && panelRefs.current[prevId]) panelRefs.current[prevId].classList.remove('expanded');
+    if (nextId && panelRefs.current[nextId]) panelRefs.current[nextId].classList.add('expanded');
 
     setOpenId(nextId);
   };
@@ -163,56 +174,13 @@ export default function Cursos() {
   const setPanelRef = (id) => (el) => {
     if (el) {
       panelRefs.current[id] = el;
-      if (openId === id) {
-        el.classList.add('expanded');
-      } else {
-        el.classList.remove('expanded');
-      }
+      if (openId === id) el.classList.add('expanded');
+      else el.classList.remove('expanded');
     } else {
       delete panelRefs.current[id];
     }
   };
-
-  const cursos = [
-    {
-      id: 1,
-      titulo: 'Curso de Automação Industrial',
-      parceria: 'Matta Automação e A3EM',
-      descricao: 'Aprenda os fundamentos da automação industrial com práticas reais.',
-      detalhes: [
-        'Introdução à automação industrial',
-        'Configuração de CLPs (Controladores Lógicos Programáveis)',
-        'Redes industriais: Ethernet e DeviceNet',
-        'Programação de sistemas supervisórios',
-        'Exercícios práticos com equipamentos reais',
-      ],
-      data: '01 de novembro de 2025',
-      local: 'Sede da A3EM, Ouro Preto/MG',
-      cargaHoraria: '40 horas',
-      instrutor: 'Luiz da Matta',
-      imagem: '/foto7carrossel.jpg',
-    },
-    {
-      id: 2,
-      titulo: 'Curso de Programação Web',
-      parceria: 'Start Carreiras',
-      descricao: 'Domine a programação web com foco em desenvolvimento front-end.',
-      data: 'A confirmar',
-      local: 'Escola de Minas - UFOP, Ouro Preto/MG',
-      imagem: '/Icons/designer-de-web.png',
-    },
-    {
-      id: 3,
-      titulo: 'Curso de Redes Industriais',
-      parceria: 'Matta Automação',
-      descricao: 'Entenda como configurar e gerenciar redes industriais.',
-      data: 'A confirmar',
-      local: 'Sede da A3EM, Ouro Preto/MG',
-      imagem: '/Icons/industria-40.png',
-    },
-  ];
-
-  return (
+return (
     <section className="cursos-section">
       <header className="cursos-header">
         <h1>Cursos Automic Jr. e Parceiros</h1>
@@ -221,105 +189,72 @@ export default function Cursos() {
         </p>
       </header>
 
-      {/* notificação acessível (aparece ao clicar em Solicitar Curso) */}
-      <div
-        className={`solicitar-notification ${notification ? 'show' : ''}`}
-        role="status"
-        aria-live="polite"
-      >
+      <div className={`solicitar-notification ${notification ? 'show' : ''}`} role="status" aria-live="polite">
         {notification}
       </div>
 
       <div className="cursos-content">
-        {cursos.map((curso, index) => {
-          const isOpen = openId === curso.id;
-          const isFeedbackCourse = curso.id === 1; // apenas o primeiro curso tem feedbacks
-          const feedbacks = isFeedbackCourse && isOpen ? generateRealFeedbacks() : [];
+        {loading ? (
+          <div style={{ textAlign: 'center', width: '100%', color: '#1a237e' }}>
+             <h2>Carregando cursos...</h2>
+          </div>
+        ) : (
+          cursos.map((curso, index) => {
+            const isOpen = openId === curso.id;
+            // Verifica pelo ID se é o curso de automação para mostrar os feedbacks
+            const isFeedbackCourse = curso.id === "curso-automacao-2025"; 
+            const feedbacks = isFeedbackCourse && isOpen ? generateRealFeedbacks() : [];
 
-          return (
-            <article
-              key={curso.id}
-              className={`curso-item ${index % 2 === 0 ? 'left' : 'right'}`}
-              aria-expanded={isOpen}
-            >
-              <div className="curso-main">
-                <div className="curso-meta">
-                  <h3 className="curso-title">{curso.titulo}</h3>
-                  <p className="curso-parceria"><strong>Parceria:</strong> {curso.parceria}</p>
-                  <p className="curso-desc">{curso.descricao}</p>
-                </div>
-
-                <div className="curso-actions">
-                  <button
-                    className="curso-button secondary"
-                    onClick={() => toggle(curso.id)}
-                    aria-controls={`detalhes-${curso.id}`}
-                    aria-expanded={isOpen}
-                  >
-                    {isOpen ? 'Fechar' : 'Saiba mais'}
-                  </button>
-                  <button
-                    className="curso-button primary"
-                    onClick={() => solicitarCurso(curso)}
-                  >
-                    Solicitar Curso
-                  </button>
-                </div>
-              </div>
-
-              <div
-                id={`detalhes-${curso.id}`}
-                ref={setPanelRef(curso.id)}
-                className={`expanded-panel ${isOpen ? 'expanded' : ''}`}
-                aria-hidden={!isOpen}
-              >
-                <div className="expanded-inner">
-                  <div className="expanded-top">
-                    <img
-                      src={curso.imagem}
-                      alt={`${curso.titulo} imagem`}
-                      className="expanded-image"
-                      loading="lazy"
-                      decoding="async"
-                      width="220"
-                      height="140"
-                    />
-                    <div className="expanded-info">
-                      <p><strong>Próximo curso:</strong> {curso.data}</p>
-                      {curso.local && <p><strong>Local:</strong> {curso.local}</p>}
-                      {curso.cargaHoraria && <p><strong>Carga horária:</strong> {curso.cargaHoraria}</p>}
-                      {curso.instrutor && <p><strong>Instrutor:</strong> {curso.instrutor}</p>}
-                      {curso.detalhes && (
-                        <ul>
-                          {curso.detalhes.map((d, i) => (
-                            <li key={i}>{d}</li>
-                          ))}
-                        </ul>
-                      )}
-                    </div>
+            return (
+              <article key={curso.id} className={`curso-item ${index % 2 === 0 ? 'left' : 'right'}`} aria-expanded={isOpen}>
+                {/* O restante do HTML do seu map() de cursos continua EXATAMENTE igual... */}
+                <div className="curso-main">
+                  <div className="curso-meta">
+                    <h3 className="curso-title">{curso.titulo}</h3>
+                    <p className="curso-parceria"><strong>Parceria:</strong> {curso.parceria}</p>
+                    <p className="curso-desc">{curso.descricao}</p>
                   </div>
-
-                  {isFeedbackCourse && isOpen && (
-                    <div className="feedback-row" aria-live="polite">
-                      <MetricsGrid
-                        metrics={[
-                          aggregatedMetrics.geral,
-                          aggregatedMetrics.estrutura,
-                          aggregatedMetrics.entendimento,
-                          aggregatedMetrics.material_clareza
-                        ]}
-                        recommendation={aggregatedMetrics.recomendacao}
-                      />
-
-                      <h4 className="feedback-title">Detalhes da Avaliação</h4>
-                      <FeedbackCarousel feedbacks={feedbacks} />
-                    </div>
-                  )}
+                  <div className="curso-actions">
+                    <button className="curso-button secondary" onClick={() => toggle(curso.id)} aria-controls={`detalhes-${curso.id}`} aria-expanded={isOpen}>
+                      {isOpen ? 'Fechar' : 'Saiba mais'}
+                    </button>
+                    <button className="curso-button primary" onClick={() => solicitarCurso(curso)}>
+                      Solicitar Curso
+                    </button>
+                  </div>
                 </div>
-              </div>
-            </article>
-          );
-        })}
+
+                <div id={`detalhes-${curso.id}`} ref={setPanelRef(curso.id)} className={`expanded-panel ${isOpen ? 'expanded' : ''}`} aria-hidden={!isOpen}>
+                  <div className="expanded-inner">
+                    <div className="expanded-top">
+                      <img src={curso.imagem} alt={`${curso.titulo} imagem`} className="expanded-image" loading="lazy" decoding="async" width="220" height="140" />
+                      <div className="expanded-info">
+                        <p><strong>Próximo curso:</strong> {curso.data}</p>
+                        {curso.local && <p><strong>Local:</strong> {curso.local}</p>}
+                        {curso.cargaHoraria && <p><strong>Carga horária:</strong> {curso.cargaHoraria}</p>}
+                        {curso.instrutor && <p><strong>Instrutor:</strong> {curso.instrutor}</p>}
+                        {curso.detalhes && (
+                          <ul>{curso.detalhes.map((d, i) => (<li key={i}>{d}</li>))}</ul>
+                        )}
+                      </div>
+                    </div>
+
+                    {isFeedbackCourse && isOpen && (
+                      <div className="feedback-row" aria-live="polite">
+                        <MetricsGrid
+                          metrics={[ aggregatedMetrics.geral, aggregatedMetrics.estrutura, aggregatedMetrics.entendimento, aggregatedMetrics.material_clareza ]}
+                          recommendation={aggregatedMetrics.recomendacao}
+                        />
+                        <h4 className="feedback-title">Detalhes da Avaliação</h4>
+                        <FeedbackCarousel feedbacks={feedbacks} />
+                      </div>
+                    )}
+                  </div>
+                </div>
+              </article>
+            );
+          })
+        )}
       </div>
     </section>
   );

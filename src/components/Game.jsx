@@ -1,4 +1,4 @@
-import './componentIndex.css';
+import '../styles/Game.css';
 import komb from '../assets/komb-automic.png';
 // import muro from '../assets/muro-tijolo.jpg';
 import clouds from '../assets/clouds.png';

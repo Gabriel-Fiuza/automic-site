@@ -40,7 +40,7 @@ export default function AboutSection() {
 
   const diretorias = ['Diretoria de Presidência', 'Diretoria de Gestão Estratégica', 'Diretoria de Mercado', 'Diretoria de Projetos'];
   
-  // Aqui está a correção: Filtramos e ordenamos para que o Diretor fique sempre no topo
+  // MUDANÇA AQUI: Filtramos e ordenamos para que o Diretor fique sempre em primeiro
   const membrosPorDiretoria = diretorias.map((diretoria) => {
     const membrosDaDiretoria = membrosFiltrados.filter(([id, membro]) => membro.diretoria === diretoria);
     
@@ -51,9 +51,9 @@ export default function AboutSection() {
       const isDiretorA = cargoA.includes('diretor');
       const isDiretorB = cargoB.includes('diretor');
 
-      if (isDiretorA && !isDiretorB) return -1; // 'a' (Diretor) sobe na lista
-      if (!isDiretorA && isDiretorB) return 1;  // 'b' (Diretor) sobe na lista
-      return 0; // Se os dois forem gestores ou diretores, mantém a ordem original
+      if (isDiretorA && !isDiretorB) return -1; // 'a' sobe na lista
+      if (!isDiretorA && isDiretorB) return 1;  // 'b' sobe na lista
+      return 0; // Se os dois forem gestores ou os dois diretores, mantém a ordem
     });
 
     return {

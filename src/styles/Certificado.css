@@ -1,0 +1,288 @@
+/* src/styles/Certificado.css */
+
+/* ===============================
+   ESTILOS GERAIS E BOTÕES
+=============================== */
+.cert-btn {
+  background: var(--azul-escuro);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 12px 20px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: all 0.2s ease;
+}
+
+.cert-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0,0,0,0.2); }
+.cert-btn:active { transform: translateY(0); }
+.cert-btn.linkedin { background: #0077b5; }
+.cert-btn.anchor { background: var(--azul-escuro); }
+
+.dropdown-container { position: relative; width: max-content; }
+.cert-dropdown {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 110%;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  min-width: 160px;
+  z-index: 20;
+  overflow: hidden;
+}
+.cert-dropdown.open { display: block; }
+.cert-dropdown-btn {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 12px 16px;
+  cursor: pointer;
+  text-align: left;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  border-bottom: 1px solid #eee;
+}
+.cert-dropdown-btn:hover { background: #f5f5f5; color: var(--azul-escuro); }
+
+/* ===============================
+   ESTRUTURA PRINCIPAL (GRID/FLEX)
+=============================== */
+.certificado-main {
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 2rem 1rem;
+  display: flex;
+  gap: 32px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  position: relative;
+  justify-content: center;
+}
+
+.certificado-pdf-col {
+  flex: 0 1 800px;
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.certificado-info-col {
+  flex: 1 1 0;
+  width: 100%;
+  min-width: 320px;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+/* ===============================
+   ÁREA DO PDF E NAVEGAÇÃO
+=============================== */
+.cert-iframe-wrapper {
+  width: 100%;
+  min-height: 650px;
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cert-iframe {
+  width: 100%;
+  height: 650px;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  background: #fff;
+  display: block;
+}
+
+/* BOTÃO FLUTUANTE DE ABRIR PDF */
+.cert-link-external {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: rgba(0, 19, 48, 0.75); /* Fundo escuro transparente */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  transition: all 0.2s ease;
+  z-index: 10;
+}
+.cert-link-external:hover {
+  background: var(--amarelo-vibrante);
+  color: var(--azul-escuro);
+  transform: scale(1.05);
+}
+
+.pdf-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 12px;
+}
+.pdf-placeholder img { width: 80px; opacity: 0.9; margin-bottom: 1rem; }
+.pdf-placeholder p { color: white; font-size: 1.05rem; line-height: 1.5; max-width: 300px; margin: 0; }
+
+.cert-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  padding: 15px 20px;
+  gap: 16px;
+}
+
+/* ===============================
+   CARDS DE INFORMAÇÃO
+=============================== */
+.cert-card, .cert-datas-box, .cert-section, .cert-program {
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+  padding: 2rem;
+  box-sizing: border-box;
+  line-height: 1.6;
+}
+
+.cert-info-section { margin-bottom: 1.5rem; }
+.cert-info-section h3, .cert-section h3, .cert-program h3 {
+  color: var(--azul-escuro);
+  font-size: 1.15rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid var(--amarelo-vibrante);
+  padding-bottom: 0.5rem;
+  display: inline-block; /* Mantém a linha amarela do tamanho exato do texto */
+  max-width: 100%;       /* Impede que passe do tamanho da tela no celular */
+  word-wrap: break-word; /* Força a quebra de linha se necessário */
+  line-height: 1.4;      /* Dá um respiro entre as linhas quando o texto quebrar */
+}
+.cert-info-section p { margin: 0 0 6px 0; color: #444; }
+.nome-destaque { font-size: 1.45rem; color: var(--azul-escuro); font-weight: 800; letter-spacing: 0.5px; }
+
+.cert-datas-box p { margin: 0 0 8px 0; color: #333; font-size: 1.05rem; }
+
+/* ===============================
+   SEÇÕES INFERIORES (ATIVIDADES E PROGRAMA)
+=============================== */
+.cert-atividades-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px;
+  width: 100%;
+  margin-top: 16px;
+  align-items: stretch;
+}
+
+.atividades-section { flex: 2.5; min-width: 300px; }
+.sobre-section { flex: 1; min-width: 300px; text-align: justify; }
+.carrossel-wrapper { width: 100%; margin-bottom: 1.5rem; }
+.cert-atividades-list { margin: 0; padding-left: 20px; font-size: 1rem; color: #444; }
+
+.cert-program { width: 100%; margin-top: 16px; }
+.cert-list {
+  margin: 0;
+  padding-left: 20px;
+  columns: 2;
+  column-gap: 40px;
+  line-height: 2;
+  color: #444;
+}
+.cert-list li { break-inside: avoid-column; margin-bottom: 6px; }
+
+/* ===============================
+   UTILITÁRIOS E FEEDBACKS
+=============================== */
+.cert-loading, .cert-error-msg, .cert-empty-msg {
+  text-align: center;
+  padding: 3rem 1rem;
+  background: white;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 600px;
+  margin: 40px auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.cert-error-msg { color: crimson; }
+.cert-empty-msg { color: #555; }
+
+
+/* =========================================================
+   A MÁGICA DO MOBILE NATIVO (APP FEELING)
+========================================================= */
+@media (max-width: 991px) {
+  .certificado-main { flex-direction: column; align-items: center; }
+  .certificado-pdf-col, .certificado-info-col { max-width: 100%; }
+  .cert-list { columns: 1; }
+}
+
+@media (max-width: 768px) {
+  .certificado-main { 
+    padding: 1rem 0.8rem; /* Layout que respira nas bordas */
+    gap: 16px; 
+  }
+
+  /* O PDF agora aparece no mobile e ganha uma altura decente */
+  .cert-iframe-wrapper { 
+    min-height: 400px; 
+    border-radius: 12px;
+  }
+  .cert-iframe { 
+    height: 400px; 
+  }
+
+  .cert-nav { 
+    flex-direction: column; 
+    padding: 1.2rem; 
+    gap: 12px; 
+  }
+  .dropdown-container { width: 100%; }
+  .cert-btn { 
+    width: 100%; 
+    padding: 16px; /* Área de toque maior (dedo) */
+    font-size: 1.05rem; 
+    border-radius: 10px;
+  }
+  .cert-dropdown { width: 100%; position: relative; top: 0; margin-top: 8px; box-shadow: none; border: 1px solid #eee; }
+
+  /* Ajustando todos os cartões para o celular */
+  .cert-card, .cert-datas-box, .cert-section, .cert-program {
+    padding: 1.5rem; 
+    border-radius: 12px;
+  }
+
+  .nome-destaque { font-size: 1.25rem; }
+
+  .cert-atividades-wrapper { flex-direction: column; gap: 16px; margin-top: 0; }
+  .atividades-section { order: 1; }
+  .sobre-section { order: 2; text-align: left; }
+  .cert-info-section h3, .cert-section h3, .cert-program h3 { font-size: 1.05rem; }
+}

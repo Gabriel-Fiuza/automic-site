@@ -1,14 +1,14 @@
 import Services from "./subcomponents/Services";
-import sensor from '../assets/sensor-nivel.jpg';
-import residencial from '../assets/automacao-residencial.jpg';
-import bi from '../assets/bi.jpg';
-import chopeira from '../assets/chopeira-automatica.jpg';
-import controleAcesso from '../assets/controle-de-acesso.jpg';
-import controleEstoque from '../assets/controle-de-estoque.jpg';
-import irrigacao from '../assets/irrigacao-automatica.jpg';
-import eletrico from '../assets/projeto-eletrico.jpg';
-import iluminacao from '../assets/projeto-iluminacao.jpg';
-import './componentIndex.css';
+import sensor from '../assets/ImgListService/sensor-nivel.jpg';
+import residencial from '../assets/ImgListService/automacao-residencial.jpg';
+import bi from '../assets/ImgListService/bi.jpg';
+import chopeira from '../assets/ImgListService/chopeira-automatica.jpg';
+import controleAcesso from '../assets/ImgListService/controle-de-acesso.jpg';
+import controleEstoque from '../assets/ImgListService/controle-de-estoque.jpg';
+import irrigacao from '../assets/ImgListService/irrigacao-automatica.jpg';
+import eletrico from '../assets/ImgListService/projeto-eletrico.jpg';
+import iluminacao from '../assets/ImgListService/projeto-iluminacao.jpg';
+import '../styles/ServicesSection.css';
 
 
 export default function ServicesSection({id}) {
